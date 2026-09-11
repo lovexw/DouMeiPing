@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/entry/entry",
+    "pages/access/access",
+    "pages/home/home",
+    "pages/guide/guide",
+    "pages/coop/coop"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "抖美评 · 默默传媒",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f7fa",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#86909c",
+    "selectedColor": "#0052ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/entry/entry", "text": "首页" },
+      { "pagePath": "pages/guide/guide", "text": "指南" },
+      { "pagePath": "pages/coop/coop", "text": "合作" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

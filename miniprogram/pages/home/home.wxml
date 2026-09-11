@@ -1,0 +1,60 @@
+<view class="page" wx:if="{{store}}">
+  <!-- 顶部品牌栏 -->
+  <view class="brand-header">
+    <view class="brand-name">{{store.brand}}</view>
+    <view class="brand-desc">{{store.desc}}</view>
+  </view>
+
+  <!-- 风格切换 -->
+  <view class="style-tabs">
+    <view class="style-tab {{style === 'normal' ? 'active' : ''}}" data-style="normal" bindtap="onSwitchStyle">真实评价风</view>
+    <view class="style-tab {{style === 'xhs' ? 'active' : ''}}" data-style="xhs" bindtap="onSwitchStyle">小红书探店风</view>
+  </view>
+
+  <!-- 好评生成 -->
+  <view class="review-card">
+    <view class="label-bar">好评生成</view>
+    <view class="review-text {{hasReview ? '' : 'placeholder'}}">{{hasReview ? reviewText : '点击下方「随机生成」按钮，生成本店专属好评文案'}}</view>
+    <view class="review-meta" wx:if="{{hasReview}}">{{industryLabel}} · {{styleLabel}} · 共 {{reviewLength}} 字</view>
+  </view>
+
+  <!-- 主操作 -->
+  <view class="main-actions">
+    <view class="btn btn-primary action-btn" hover-class="btn-hover" bindtap="onGenerate">随机生成</view>
+    <view class="btn btn-secondary action-btn" hover-class="btn-hover" bindtap="onCopy">一键复制</view>
+  </view>
+
+  <!-- 平台跳转 -->
+  <view class="jump-section">
+    <view class="section-title-sm">前往平台评价</view>
+    <view class="jump-buttons">
+      <view class="jump-btn meituan" data-platform="meituan" hover-class="btn-hover" bindtap="onJumpPlatform">去美团评价</view>
+      <view class="jump-btn douyin" data-platform="douyin" hover-class="btn-hover" bindtap="onJumpPlatform">去抖音评价</view>
+    </view>
+  </view>
+
+  <!-- WiFi 工具 -->
+  <view class="wifi-card">
+    <view class="label-bar muted">门店温馨工具</view>
+    <view class="wifi-row">
+      <text class="wifi-label">门店名称</text>
+      <text class="wifi-value">{{store.name}}</text>
+    </view>
+    <view class="wifi-row">
+      <text class="wifi-label">WiFi 名称</text>
+      <text class="wifi-value">{{store.wifi.ssid}}</text>
+      <text class="wifi-copy" data-field="ssid" hover-class="copy-hover" bindtap="onCopyWifi">复制</text>
+    </view>
+    <view class="wifi-row">
+      <text class="wifi-label">WiFi 密码</text>
+      <text class="wifi-value">{{store.wifi.password}}</text>
+      <text class="wifi-copy" data-field="password" hover-class="copy-hover" bindtap="onCopyWifi">复制</text>
+    </view>
+  </view>
+
+  <view class="home-foot">
+    <view class="foot-link" hover-class="copy-hover" bindtap="goGuide">使用指南</view>
+    <text class="foot-divider">|</text>
+    <view class="foot-link" hover-class="copy-hover" bindtap="onLogout">切换门店</view>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<view class="access-page">
+  <view class="access-card">
+    <view class="brand">
+      <view class="brand-name">抖美评</view>
+      <view class="brand-desc">抖美评系统 · 默默传媒 · 门店访问</view>
+    </view>
+    <input
+      class="access-input {{focused ? 'focused' : ''}}"
+      password
+      value="{{code}}"
+      placeholder="请输入门店访问码"
+      placeholder-class="input-placeholder"
+      confirm-type="done"
+      bindinput="onInput"
+      bindfocus="onFocus"
+      bindblur="onBlur"
+      bindconfirm="onSubmit"
+    />
+    <view class="btn btn-primary" hover-class="btn-hover" bindtap="onSubmit">进入系统</view>
+    <view class="access-tip">
+      <view>演示访问码：<text class="highlight">123</text>（咖啡）· <text class="highlight">666</text>（火锅）· <text class="highlight">888</text>（烧烤）</view>
+      <view class="sub">输入访问码即可体验对应行业的全部词库</view>
+    </view>
+  </view>
+</view>

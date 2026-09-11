@@ -1,0 +1,115 @@
+.page { padding-bottom: 40rpx; }
+
+/* ===== 顶部品牌栏 ===== */
+.brand-header {
+  background: linear-gradient(135deg, #0052ff 0%, #2b7dff 100%);
+  color: #fff;
+  padding: 48rpx 40rpx 64rpx;
+  border-radius: 0 0 56rpx 56rpx;
+}
+.brand-name { font-size: 44rpx; font-weight: 600; letter-spacing: 2rpx; }
+.brand-desc { font-size: 24rpx; opacity: 0.85; margin-top: 8rpx; }
+
+/* ===== 风格切换 ===== */
+.style-tabs {
+  margin: -36rpx 32rpx 32rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  padding: 8rpx;
+  display: flex;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.04);
+}
+.style-tab {
+  flex: 1;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  border-radius: 20rpx;
+  color: #86909c;
+}
+.style-tab.active {
+  background: linear-gradient(135deg, #0052ff, #2b7dff);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ===== 好评生成 ===== */
+.review-card {
+  margin: 0 32rpx 32rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.03);
+  min-height: 280rpx;
+  box-sizing: border-box;
+}
+.review-text {
+  font-size: 30rpx;
+  line-height: 1.8;
+  color: #1d2129;
+  word-break: break-all;
+}
+.review-text.placeholder { color: #c9cdd4; }
+.review-meta { font-size: 22rpx; color: #86909c; margin-top: 24rpx; }
+
+/* ===== 主操作 ===== */
+.main-actions {
+  display: flex;
+  margin: 0 32rpx 32rpx;
+}
+.action-btn { flex: 1; }
+.action-btn + .action-btn { margin-left: 24rpx; }
+
+/* ===== 平台跳转 ===== */
+.jump-section { padding: 0 32rpx 32rpx; }
+.section-title-sm { font-size: 24rpx; color: #86909c; margin-bottom: 20rpx; }
+.jump-buttons { display: flex; }
+.jump-btn {
+  flex: 1;
+  padding: 26rpx 0;
+  border-radius: 24rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-align: center;
+}
+.jump-btn + .jump-btn { margin-left: 24rpx; }
+.jump-btn.meituan { background: #ffd101; color: #333; }
+.jump-btn.douyin { background: #000; color: #fff; }
+
+/* ===== WiFi 工具 ===== */
+.wifi-card {
+  margin: 0 32rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 32rpx 40rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.03);
+}
+.wifi-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+}
+.wifi-row + .wifi-row { border-top: 2rpx solid #f2f3f5; }
+.wifi-label { color: #86909c; width: 150rpx; flex-shrink: 0; }
+.wifi-value { color: #1d2129; font-weight: 500; flex: 1; margin-right: 16rpx; }
+.wifi-copy {
+  color: #0052ff;
+  font-size: 24rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 12rpx;
+  background: #e8f0ff;
+  flex-shrink: 0;
+}
+.copy-hover { opacity: 0.7; }
+
+/* ===== 底部操作 ===== */
+.home-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48rpx;
+  font-size: 26rpx;
+}
+.foot-link { color: #0052ff; padding: 8rpx 24rpx; }
+.foot-divider { color: #e5e6eb; }

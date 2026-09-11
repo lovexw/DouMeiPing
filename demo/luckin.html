@@ -38,7 +38,7 @@
   }
   .login-brand {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
   .login-brand .name {
     font-size: 26px;
@@ -57,7 +57,7 @@
     border: 1px solid #e5e6eb;
     border-radius: 12px;
     font-size: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     background: #f7f8fa;
     outline: none;
     transition: all 0.2s;
@@ -77,6 +77,7 @@
     font-weight: 500;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
+    margin-bottom: 16px;
   }
   .login-btn:active {
     transform: scale(0.98);
@@ -84,8 +85,12 @@
   .login-tip {
     text-align: center;
     font-size: 12px;
-    color: #c9cdd4;
-    margin-top: 16px;
+    color: #86909c;
+    line-height: 1.6;
+  }
+  .login-tip .highlight {
+    color: #0052ff;
+    font-weight: 500;
   }
 
   /* 主页面 默认隐藏 */
@@ -227,7 +232,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
     transition: all 0.2s;
   }
   .jump-btn:active {
@@ -267,9 +271,9 @@
   }
   .wifi-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
+    justify-content: space-between;
+    padding: 10px 0;
     font-size: 14px;
   }
   .wifi-row + .wifi-row {
@@ -277,18 +281,23 @@
   }
   .wifi-label {
     color: #86909c;
+    width: 70px;
+    flex-shrink: 0;
   }
   .wifi-value {
     color: #1d2129;
     font-weight: 500;
+    flex: 1;
+    text-align: left;
   }
   .wifi-copy {
     color: #0052ff;
     font-size: 12px;
-    padding: 4px 8px;
+    padding: 4px 10px;
     border-radius: 6px;
     background: #e8f0ff;
     cursor: pointer;
+    flex-shrink: 0;
   }
   .wifi-copy:active {
     opacity: 0.7;
@@ -317,11 +326,14 @@
   <div class="login-card">
     <div class="login-brand">
       <div class="name">LUCKIN COFFEE</div>
-      <div class="desc">瑞幸咖啡门店工具</div>
+      <div class="desc">瑞幸咖啡门店工具 · 演示版</div>
     </div>
     <input type="password" class="login-input" id="passwordInput" placeholder="请输入访问密码" autocomplete="off">
     <button class="login-btn" onclick="verifyLogin()">进入系统</button>
-    <div class="login-tip">请输入正确密码后使用</div>
+    <div class="login-tip">
+      演示账号密码：<span class="highlight">123</span><br>
+      输入即可体验全部功能
+    </div>
   </div>
 </div>
 
@@ -334,7 +346,7 @@
 
   <div class="style-tabs">
     <div class="style-tab active" data-style="normal" onclick="switchStyle('normal')">真实评价风</div>
-    <div class="style-tab" data-style="xhs" onclick="switchStyle('xhs')">探店测评风</div>
+    <div class="style-tab" data-style="xhs" onclick="switchStyle('xhs')">小红书探店风</div>
   </div>
 
   <div class="review-card">
@@ -439,39 +451,39 @@
     ]
   };
 
-  // ========== 词库：探店测评风 ==========
+  // ========== 词库：小红书探店风（地道小红书语气） ==========
   const XHS = {
     openers: [
-      "📝 瑞幸奶酪系列实测｜新品到底值不值得点",
-      "☕️ 探店｜瑞幸新品奶酪拿铁，深度测评来了",
-      "连续喝了三天，说说瑞幸奶酪系列的真实口感",
-      "瑞幸新品打卡｜抹茶奶酪拿铁无滤镜测评",
-      "打工人咖啡测评｜瑞幸这波新品能不能打",
-      "实测瑞幸奶酪系列，这杯最值得点"
+      "家人们谁懂啊！瑞幸这杯奶酪拿铁真的绝了🥹",
+      "救命🆘瑞幸新品奶酪系列我能喝一整个夏天",
+      "抹茶脑袋速冲！这杯真的一口就沦陷✨",
+      "打工人早八救星！每天一杯快乐起飞☕️",
+      "我宣布这是近期喝过最惊喜的拿铁！",
+      "信我！瑞幸这杯奶酪系列真的可以冲👍"
     ],
     tastes: [
-      "抹茶底茶感清晰，不涩不苦，奶酪酱是咸香口，融合度很高",
-      "生椰拿铁椰乳浓度够，咖啡焦香适中，冰饮口感更清爽",
-      "小奶酪拿铁奶感厚重，咸奶香突出，整体偏醇厚挂",
-      "新西兰进口奶酪酱质感细腻，没有粉感，甜咸比例刚好",
-      "抹茶风味正，和奶酪分层明显，搅匀后口感顺滑",
-      "奶酪风味不突兀，和咖啡融合自然，不会盖过咖啡香"
+      "抹茶奶酪拿铁茶香混着奶香，入口丝滑到跺脚！少糖刚好不腻🍵",
+      "生椰拿铁椰香超浓郁，咖啡味不苦，冰的巨清爽巨好喝🥥",
+      "小奶酪拿铁咸香奶香交织，口感层次真的很丰富",
+      "新西兰进口奶酪酱真的不一样，轻盈不腻口，越喝越上头🧀",
+      "抹茶味超正，和奶酪融合得恰到好处，完全不涩口",
+      "每一口都奶fufu的，奶酪香和咖啡香在嘴里散开"
     ],
     experiences: [
-      "建议少糖，甜度刚好不腻，活动价9.9性价比拉满",
-      "小程序提前点单，到店即取，早高峰也不耽误时间",
-      "出杯速度稳定，下单到取餐平均五分钟左右",
-      "包装到位，冰饮有冰袋，半小时到手温度还很低",
-      "分量够大，超大杯一杯能喝一上午",
-      "店员操作规范，备注少冰少糖都能准确做对"
+      "9.9的快乐谁懂啊！每天一杯也完全不心疼💸",
+      "小程序提前点单，到店直接取，早八人狂喜",
+      "出杯速度超快，高峰期也不用排长队等",
+      "性价比直接拉满，比很多咖啡店都好喝",
+      "包装很稳，冰饮到手还是冰冰凉凉的",
+      "店员超好，备注的要求都满足了💖"
     ],
     closers: [
-      "整体合格，日常通勤可以无脑入",
-      "推荐抹茶控试试，属于会回购的款",
-      "综合评分8分，同价位里很能打",
-      "打工人放心冲，日常喝不心疼",
-      "属于新品里不踩雷的，值得尝试",
-      "整体在线，会列入日常点单清单"
+      "已经连续喝三天了，真的会上头！",
+      "姐妹们冲！不好喝你来打我（bushi",
+      "真心推荐，咖啡星人快去试试",
+      "锁死这杯！以后就是我的常驻款了",
+      "五星安利！真的越喝越喜欢",
+      "瑞幸你是我的神！请保持这个水准🙏"
     ]
   };
 

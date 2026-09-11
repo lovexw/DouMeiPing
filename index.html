@@ -1,1 +1,537 @@
-Hello
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抖美评系统 · 默默传媒 | 本地商家好评运营工具</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+
+  body {
+    background: #f7f9fc;
+    color: #1d2129;
+    line-height: 1.6;
+  }
+
+  /* 导航栏 */
+  .nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #eef0f4;
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0052ff;
+    letter-spacing: 0.5px;
+  }
+  .logo span {
+    color: #1d2129;
+    font-weight: 500;
+    margin-left: 4px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    color: #4e5969;
+  }
+  .nav-links a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover {
+    color: #0052ff;
+  }
+  .nav-demo-btn {
+    padding: 8px 18px;
+    background: #0052ff;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-demo-btn:hover {
+    background: #0044d4;
+  }
+
+  /* Hero 区域 */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #e8f0ff;
+    color: #0052ff;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #1d2129;
+  }
+  .hero h1 span {
+    color: #0052ff;
+  }
+  .hero-desc {
+    font-size: 18px;
+    color: #4e5969;
+    max-width: 680px;
+    margin: 0 auto 36px;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 82, 255, 0.28);
+  }
+  .btn-secondary {
+    padding: 14px 32px;
+    background: #fff;
+    color: #0052ff;
+    border: 1px solid #d0e0ff;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: #f5f8ff;
+  }
+
+  /* 通用区块 */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title p {
+    font-size: 15px;
+    color: #6b7280;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* 功能网格 */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .feature-card {
+    background: #fff;
+    padding: 28px 24px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s;
+  }
+  .feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  }
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .feature-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.7;
+  }
+
+  /* 适用行业 */
+  .industries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .industry-tag {
+    padding: 10px 22px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+    font-size: 14px;
+    color: #374151;
+    transition: all 0.2s;
+  }
+  .industry-tag:hover {
+    border-color: #0052ff;
+    color: #0052ff;
+  }
+
+  /* 定价 */
+  .pricing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .price-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .price-card.recommend {
+    border-color: #0052ff;
+    box-shadow: 0 6px 24px rgba(0, 82, 255, 0.12);
+  }
+  .price-tag {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+  .price-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .price-desc {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 24px;
+  }
+  .price-number {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1d2129;
+    margin-bottom: 4px;
+  }
+  .price-number span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6b7280;
+  }
+  .price-unit {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 24px;
+  }
+  .price-list {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+  .price-list li {
+    font-size: 14px;
+    padding: 6px 0;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .price-list li::before {
+    content: "✓";
+    color: #0052ff;
+    font-weight: 600;
+  }
+  .price-btn {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 10px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .price-btn-outline {
+    border: 1px solid #d0e0ff;
+    color: #0052ff;
+  }
+  .price-btn-outline:hover {
+    background: #f5f8ff;
+  }
+  .price-btn-solid {
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
+  }
+  .price-btn-solid:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 82, 255, 0.28);
+  }
+
+  /* 演示入口 */
+  .demo-banner {
+    background: linear-gradient(135deg, #0052ff 0%, #2b7dff 100%);
+    border-radius: 16px;
+    padding: 48px 40px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .demo-banner h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .demo-banner p {
+    opacity: 0.85;
+    font-size: 14px;
+  }
+  .demo-banner .btn-white {
+    padding: 12px 28px;
+    background: #fff;
+    color: #0052ff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .demo-banner .btn-white:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  /* 页脚 */
+  .footer {
+    border-top: 1px solid #eef0f4;
+    padding: 32px 24px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+    margin-top: 40px;
+  }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .features { grid-template-columns: 1fr; }
+    .pricing { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .section-title h2 { font-size: 26px; }
+    .demo-banner { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">抖美评<span>· 默默传媒</span></div>
+    <div class="nav-links">
+      <a href="#features">核心功能</a>
+      <a href="#industries">适用行业</a>
+      <a href="#pricing">定价方案</a>
+    </div>
+    <a href="demo/luckin.html" class="nav-demo-btn">在线演示</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">专为本地实体商家打造</div>
+  <h1>一键生成真实好评<br>直达 <span>美团 · 抖音</span> 评价页</h1>
+  <p class="hero-desc">
+    抖美评系统，基于分行业写实词库与智能组合算法，帮助商家快速生成不雷同的真实好评，
+    一键复制并跳转对应平台评价页面，提升门店评分与自然流量。
+  </p>
+  <div class="hero-btns">
+    <a href="demo/luckin.html" class="btn-primary">立即体验演示</a>
+    <a href="#pricing" class="btn-secondary">查看定价方案</a>
+  </div>
+</section>
+
+<!-- 核心功能 -->
+<section class="section" id="features">
+  <div class="section-title">
+    <h2>核心功能</h2>
+    <p>专注解决商家好评运营痛点，简单高效，开箱即用</p>
+  </div>
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">词</div>
+      <h3>分行业专属词库</h3>
+      <p>覆盖餐饮、休闲、零售等多业态，每类行业独立写实词库，评价贴合真实场景，拒绝空泛模板。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">智</div>
+      <h3>智能生成不雷同</h3>
+      <p>多维组合算法，随机抽取卖点拼接生成，百条评价横向不重复，避免平台判定同质化内容。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">快</div>
+      <h3>一键复制直达平台</h3>
+      <p>生成 → 复制 → 跳转评价页，三步闭环完整链路，顾客无需打字，点击即可完成评价流程。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">店</div>
+      <h3>门店独立账号</h3>
+      <p>一店一码一密码，数据门店间完全隔离，支持批量管理，适合连锁品牌与多门店运营。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">双</div>
+      <h3>双平台支持</h3>
+      <p>同时支持美团、抖音两大本地生活平台，一键跳转对应评价页，覆盖主流流量入口。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">移</div>
+      <h3>移动端原生适配</h3>
+      <p>手机扫码即用，无需下载APP，界面贴合原生操作体验，店员与顾客都能快速上手。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 适用行业 -->
+<section class="section" id="industries">
+  <div class="section-title">
+    <h2>适用行业</h2>
+    <p>持续扩展更多本地生活业态，按需定制专属词库</p>
+  </div>
+  <div class="industries">
+    <span class="industry-tag">烧烤店</span>
+    <span class="industry-tag">火锅店</span>
+    <span class="industry-tag">卤味熟食</span>
+    <span class="industry-tag">咖啡饮品</span>
+    <span class="industry-tag">KTV</span>
+    <span class="industry-tag">电玩城</span>
+    <span class="industry-tag">足疗按摩</span>
+    <span class="industry-tag">特产零食</span>
+    <span class="industry-tag">美容美发</span>
+    <span class="industry-tag">酒店民宿</span>
+  </div>
+</section>
+
+<!-- 定价方案 -->
+<section class="section" id="pricing">
+  <div class="section-title">
+    <h2>透明定价</h2>
+    <p>单门店一口价，无隐藏费用，开通即可使用全部功能</p>
+  </div>
+  <div class="pricing">
+    <div class="price-card">
+      <div class="price-name">月度版</div>
+      <div class="price-desc">适合短期试用，按月开通</div>
+      <div class="price-number">¥29.9<span></span></div>
+      <div class="price-unit">/ 单门店 · 月</div>
+      <ul class="price-list">
+        <li>无限次好评生成</li>
+        <li>对应行业专属词库</li>
+        <li>美团+抖音双平台跳转</li>
+        <li>门店独立账号密码</li>
+        <li>词库永久免费更新</li>
+      </ul>
+      <a href="demo/luckin.html" class="price-btn price-btn-outline">先体验演示</a>
+    </div>
+
+    <div class="price-card recommend">
+      <div class="price-tag">推荐</div>
+      <div class="price-name">年度版</div>
+      <div class="price-desc">长期使用更划算，省两个月费用</div>
+      <div class="price-number">¥299<span></span></div>
+      <div class="price-unit">/ 单门店 · 年（折合24.9元/月）</div>
+      <ul class="price-list">
+        <li>包含月度版全部功能</li>
+        <li>折合每天仅需 0.82 元</li>
+        <li>全年词库免费更新迭代</li>
+        <li>优先支持行业词库定制</li>
+        <li>专属客服使用指导</li>
+      </ul>
+      <a href="demo/luckin.html" class="price-btn price-btn-solid">立即体验演示</a>
+    </div>
+  </div>
+</section>
+
+<!-- 演示入口横幅 -->
+<section class="section">
+  <div class="demo-banner">
+    <div>
+      <h3>马上体验抖美评系统</h3>
+      <p>进入瑞幸咖啡演示版，完整体验生成、复制、跳转全流程</p>
+    </div>
+    <a href="demo/luckin.html" class="btn-white">进入演示 →</a>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<div class="footer">
+  © 2026 默默传媒 · 抖美评系统 版权所有
+</div>
+
+</body>
+</html>

@@ -72,6 +72,8 @@ DouMeiPing/
 
 详细说明见 [miniprogram/README.md](miniprogram/README.md)。
 
+发展规划、架构决策与当前进度见 [docs/ROADMAP.md](docs/ROADMAP.md)（项目「外置记忆」，随进度更新）。
+
 ## 版权
 
 © 2026 默默传媒 · 抖美评系统

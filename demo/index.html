@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>瑞幸咖啡 · 门店工具</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: #f5f7fa;
+    min-height: 100vh;
+    color: #1d2129;
+  }
+
+  /* 登录页 */
+  .login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: linear-gradient(180deg, #e8f0ff 0%, #f5f7fa 65%);
+  }
+  .login-card {
+    width: 100%;
+    max-width: 360px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 44px 28px;
+    box-shadow: 0 8px 32px rgba(0, 82, 255, 0.08);
+  }
+  .login-brand {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .login-brand .name {
+    font-size: 26px;
+    font-weight: 600;
+    color: #0052ff;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .login-brand .desc {
+    font-size: 13px;
+    color: #86909c;
+  }
+  .login-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e5e6eb;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    background: #f7f8fa;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .login-input:focus {
+    border-color: #0052ff;
+    background: #fff;
+  }
+  .login-btn {
+    width: 100%;
+    padding: 14px 0;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
+  }
+  .login-btn:active {
+    transform: scale(0.98);
+  }
+  .login-tip {
+    text-align: center;
+    font-size: 12px;
+    color: #c9cdd4;
+    margin-top: 16px;
+  }
+
+  /* 主页面 默认隐藏 */
+  .main-page {
+    display: none;
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: #f5f7fa;
+    padding-bottom: 32px;
+  }
+
+  /* 顶部品牌栏 */
+  .brand-header {
+    background: linear-gradient(135deg, #0052ff 0%, #2b7dff 100%);
+    color: #fff;
+    padding: 30px 20px 36px;
+    border-radius: 0 0 28px 28px;
+  }
+  .brand-name {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .brand-desc {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+
+  /* 风格切换 */
+  .style-tabs {
+    margin: -18px 16px 16px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 4px;
+    display: flex;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  .style-tab {
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #86909c;
+    transition: all 0.2s;
+  }
+  .style-tab.active {
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  /* 评价卡片 */
+  .review-card {
+    margin: 0 16px 16px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    min-height: 140px;
+  }
+  .review-label {
+    font-size: 12px;
+    color: #0052ff;
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .review-label::before {
+    content: "";
+    width: 4px;
+    height: 12px;
+    background: #0052ff;
+    border-radius: 2px;
+  }
+  .review-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1d2129;
+    word-break: break-word;
+  }
+
+  /* 主操作按钮 */
+  .main-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 16px 16px;
+  }
+  .btn {
+    padding: 14px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 82, 255, 0.18);
+  }
+  .btn-secondary {
+    background: #e8f0ff;
+    color: #0052ff;
+  }
+
+  /* 跳转区域 */
+  .jump-section {
+    padding: 0 16px 16px;
+  }
+  .section-title {
+    font-size: 12px;
+    color: #86909c;
+    margin-bottom: 10px;
+    padding-left: 2px;
+  }
+  .jump-buttons {
+    display: flex;
+    gap: 12px;
+  }
+  .jump-btn {
+    flex: 1;
+    padding: 14px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  .jump-btn:active {
+    transform: scale(0.98);
+  }
+  .btn-meituan {
+    background: #ffd101;
+    color: #333;
+  }
+  .btn-douyin {
+    background: #000;
+    color: #fff;
+  }
+
+  /* 温馨工具 - WiFi */
+  .wifi-card {
+    margin: 0 16px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  }
+  .wifi-title {
+    font-size: 12px;
+    color: #86909c;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .wifi-title::before {
+    content: "";
+    width: 4px;
+    height: 12px;
+    background: #4cd964;
+    border-radius: 2px;
+  }
+  .wifi-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  .wifi-row + .wifi-row {
+    border-top: 1px solid #f2f3f5;
+  }
+  .wifi-label {
+    color: #86909c;
+  }
+  .wifi-value {
+    color: #1d2129;
+    font-weight: 500;
+  }
+  .wifi-copy {
+    color: #0052ff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #e8f0ff;
+    cursor: pointer;
+  }
+  .wifi-copy:active {
+    opacity: 0.7;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 1000;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- 登录页 -->
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="name">LUCKIN COFFEE</div>
+      <div class="desc">瑞幸咖啡门店工具</div>
+    </div>
+    <input type="password" class="login-input" id="passwordInput" placeholder="请输入访问密码" autocomplete="off">
+    <button class="login-btn" onclick="verifyLogin()">进入系统</button>
+    <div class="login-tip">请输入正确密码后使用</div>
+  </div>
+</div>
+
+<!-- 主页面 -->
+<div class="main-page" id="mainPage">
+  <div class="brand-header">
+    <div class="brand-name">LUCKIN COFFEE</div>
+    <div class="brand-desc">瑞幸咖啡 · 门店运营工具</div>
+  </div>
+
+  <div class="style-tabs">
+    <div class="style-tab active" data-style="normal" onclick="switchStyle('normal')">真实评价风</div>
+    <div class="style-tab" data-style="xhs" onclick="switchStyle('xhs')">探店测评风</div>
+  </div>
+
+  <div class="review-card">
+    <div class="review-label">好评生成</div>
+    <div class="review-text" id="reviewText">点击下方「随机生成」按钮，生成专属好评文案</div>
+  </div>
+
+  <div class="main-actions">
+    <button class="btn btn-primary" onclick="generateReview()">随机生成</button>
+    <button class="btn btn-secondary" onclick="copyReview()">一键复制</button>
+  </div>
+
+  <div class="jump-section">
+    <div class="section-title">前往平台评价</div>
+    <div class="jump-buttons">
+      <button class="jump-btn btn-meituan" onclick="jumpMeituan()">去美团评价</button>
+      <button class="jump-btn btn-douyin" onclick="jumpDouyin()">去抖音评价</button>
+    </div>
+  </div>
+
+  <div class="wifi-card">
+    <div class="wifi-title">门店温馨工具</div>
+    <div class="wifi-row">
+      <span class="wifi-label">WiFi 名称</span>
+      <span class="wifi-value">瑞幸咖啡</span>
+    </div>
+    <div class="wifi-row">
+      <span class="wifi-label">WiFi 密码</span>
+      <span class="wifi-value">12345678</span>
+      <span class="wifi-copy" onclick="copyWifi()">点击复制</span>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const ACCESS_PASSWORD = "123";
+  let currentStyle = "normal";
+
+  // 密码验证
+  function verifyLogin() {
+    const input = document.getElementById('passwordInput').value;
+    if (input === ACCESS_PASSWORD) {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('mainPage').style.display = 'block';
+      showToast('登录成功');
+    } else {
+      showToast('密码错误，请重试');
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
+    }
+  }
+
+  // 回车登录
+  document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') verifyLogin();
+  });
+
+  // 切换风格
+  function switchStyle(style) {
+    currentStyle = style;
+    document.querySelectorAll('.style-tab').forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.style === style);
+    });
+    generateReview();
+  }
+
+  // ========== 词库：真实评价风 ==========
+  const NORMAL = {
+    openers: [
+      "瑞幸新出的奶酪系列真的可以，亲测不踩雷",
+      "上班日常续命咖啡，瑞幸性价比一直在线",
+      "抹茶奶酪拿铁种草好久了，今天终于喝到",
+      "早八人必备，出杯速度真的稳",
+      "这波奶酪新品诚意够，口感比想象中好",
+      "每天一杯的节奏，打工人早餐标配"
+    ],
+    tastes: [
+      "抹茶奶酪拿铁茶香混着奶香，入口丝滑，不会太甜腻",
+      "生椰拿铁椰香很浓，咖啡味平衡得刚好，喝着清爽",
+      "小奶酪拿铁奶味醇厚，咸香的口感很有层次",
+      "用的新西兰进口奶酪，口感轻盈，不会觉得厚重",
+      "抹茶味很正，和奶酪融合得不错，没有苦涩感",
+      "冰的生椰拿铁更好喝，椰香和咖啡融合得很到位"
+    ],
+    experiences: [
+      "活动价很划算，每天一杯也没什么压力",
+      "小程序提前点单，到店拿了就走，不用等",
+      "出杯速度挺快的，高峰期也没等太久",
+      "性价比很高，比同价位其他家好喝不少",
+      "包装挺严实，冰饮到手冰还没化",
+      "店员态度不错，做餐仔细，标记得很清楚"
+    ],
+    closers: [
+      "会一直回购，打工人刚需没错了",
+      "推荐试试奶酪系列，真心值得点",
+      "整体挺满意的，日常咖啡就选这家",
+      "五星好评，以后还会继续点",
+      "口感在线，性价比直接拉满",
+      "味道很稳定，闭眼点基本不踩雷"
+    ]
+  };
+
+  // ========== 词库：探店测评风 ==========
+  const XHS = {
+    openers: [
+      "📝 瑞幸奶酪系列实测｜新品到底值不值得点",
+      "☕️ 探店｜瑞幸新品奶酪拿铁，深度测评来了",
+      "连续喝了三天，说说瑞幸奶酪系列的真实口感",
+      "瑞幸新品打卡｜抹茶奶酪拿铁无滤镜测评",
+      "打工人咖啡测评｜瑞幸这波新品能不能打",
+      "实测瑞幸奶酪系列，这杯最值得点"
+    ],
+    tastes: [
+      "抹茶底茶感清晰，不涩不苦，奶酪酱是咸香口，融合度很高",
+      "生椰拿铁椰乳浓度够，咖啡焦香适中，冰饮口感更清爽",
+      "小奶酪拿铁奶感厚重，咸奶香突出，整体偏醇厚挂",
+      "新西兰进口奶酪酱质感细腻，没有粉感，甜咸比例刚好",
+      "抹茶风味正，和奶酪分层明显，搅匀后口感顺滑",
+      "奶酪风味不突兀，和咖啡融合自然，不会盖过咖啡香"
+    ],
+    experiences: [
+      "建议少糖，甜度刚好不腻，活动价9.9性价比拉满",
+      "小程序提前点单，到店即取，早高峰也不耽误时间",
+      "出杯速度稳定，下单到取餐平均五分钟左右",
+      "包装到位，冰饮有冰袋，半小时到手温度还很低",
+      "分量够大，超大杯一杯能喝一上午",
+      "店员操作规范，备注少冰少糖都能准确做对"
+    ],
+    closers: [
+      "整体合格，日常通勤可以无脑入",
+      "推荐抹茶控试试，属于会回购的款",
+      "综合评分8分，同价位里很能打",
+      "打工人放心冲，日常喝不心疼",
+      "属于新品里不踩雷的，值得尝试",
+      "整体在线，会列入日常点单清单"
+    ]
+  };
+
+  let currentReview = "";
+
+  // 随机生成好评
+  function generateReview() {
+    const lib = currentStyle === "normal" ? NORMAL : XHS;
+    const opener = lib.openers[Math.floor(Math.random() * lib.openers.length)];
+    const taste = lib.tastes[Math.floor(Math.random() * lib.tastes.length)];
+    const exp = lib.experiences[Math.floor(Math.random() * lib.experiences.length)];
+    const closer = lib.closers[Math.floor(Math.random() * lib.closers.length)];
+
+    currentReview = `${opener}。${taste}。${exp}。${closer}`;
+    document.getElementById('reviewText').textContent = currentReview;
+  }
+
+  // 复制好评
+  function copyReview() {
+    if (!currentReview) {
+      showToast('请先生成好评');
+      return;
+    }
+    navigator.clipboard.writeText(currentReview).then(() => {
+      showToast('复制成功');
+    }).catch(() => {
+      showToast('复制失败，请手动复制');
+    });
+  }
+
+  // 复制WiFi密码
+  function copyWifi() {
+    navigator.clipboard.writeText("12345678").then(() => {
+      showToast('WiFi密码已复制');
+    }).catch(() => {
+      showToast('复制失败，请手动输入');
+    });
+  }
+
+  // 跳转美团
+  function jumpMeituan() {
+    window.open('http://dpurl.cn/o6FwsGmz', '_blank');
+  }
+
+  // 跳转抖音
+  function jumpDouyin() {
+    window.open('https://v.douyin.com/TSRAHv2UZWE', '_blank');
+  }
+
+  // Toast 提示
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 1800);
+  }
+</script>
+
+</body>
+</html>

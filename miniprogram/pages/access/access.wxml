@@ -1,8 +1,8 @@
 <view class="access-page">
   <view class="access-card">
     <view class="brand">
-      <view class="brand-name">抖美评</view>
-      <view class="brand-desc">抖美评系统 · 默默传媒 · 门店访问</view>
+      <view class="brand-name">默默评价助手</view>
+      <view class="brand-desc">默默传媒 · 门店访问</view>
     </view>
     <input
       class="access-input {{focused ? 'focused' : ''}}"

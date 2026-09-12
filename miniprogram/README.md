@@ -1,7 +1,7 @@
-# 抖美评小程序（doumeiping）
+# 默默评价助手小程序（doumeiping）
 
-「抖美评系统 · 默默传媒」— 本地商家好评运营工具的微信小程序实现。
-与官网落地页（[index.html](../index.html)）和 H5 演示（[demo/luckin.html](../demo/luckin.html)）保持同一套设计规范：
+「默默评价助手 · 默默传媒」— 本地商家好评运营工具的微信小程序实现。
+与官网落地页（DouMeiPing/index.html）和 H5 演示（demo/luckin.html）保持同一套设计规范：
 主色 `#0052ff`、渐变按钮、圆角卡片、PingFang SC 字体栈、移动端优先。
 
 ## 页面结构
@@ -27,7 +27,7 @@
 ## 目录说明
 
 ```
-miniprogram/
+doumeiping/
 ├── app.js / app.json / app.wxss      # 全局配置与公共样式
 ├── project.config.json               # 项目配置（当前为游客模式 appid）
 ├── sitemap.json
@@ -53,11 +53,10 @@ miniprogram/
 ## 运行
 
 1. 下载安装[微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)。
-2. 「导入项目」选择本 `miniprogram/` 目录，AppID 可先用测试号 / 游客模式。
+2. 「导入项目」选择本目录，AppID 可先用测试号 / 游客模式。
 3. 编译后：首页 → 「进入门店工具」→ 输入访问码 `123` → 体验生成、复制、跳转全流程。
 
 ## 流程说明
 
 - 门店工具页「去美团 / 去抖音评价」：会先把当前好评复制到剪贴板，并弹窗引导打开对应 APP 粘贴发布；若门店配置了评价页链接，可再点「复制链接」获取直链。
 - 「切换门店」会清除本机登录态并回到访问码页；登录态保存在本地存储（`dmp_session`），下次打开小程序可从首页直接续用。
-- 小程序无法直接拉起美团 / 抖音 APP，「复制 + 弹窗引导」是小程序生态下的通用做法。

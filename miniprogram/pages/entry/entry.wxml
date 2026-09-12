@@ -29,7 +29,7 @@
   <!-- 核心优势 -->
   <view class="section">
     <view class="section-head">
-      <text class="t">为什么抖美评更有分量</text>
+      <text class="t">为什么默默评价助手更有分量</text>
       <text class="d">不止是生成文案，更是帮你拿到算法的流量加权</text>
     </view>
     <view class="adv-card" wx:for="{{advantages}}" wx:key="title">
@@ -73,11 +73,11 @@
   <!-- 演示横幅 -->
   <view class="section">
     <view class="demo-banner">
-      <view class="banner-title">马上体验抖美评系统</view>
+      <view class="banner-title">马上体验默默评价助手</view>
       <view class="banner-desc">输入演示访问码，完整体验生成、复制、跳转全流程</view>
       <view class="banner-btn" hover-class="btn-hover" bindtap="enterTool">进入演示</view>
     </view>
   </view>
 
-  <view class="page-footer">© 2026 默默传媒 · 抖美评系统 版权所有</view>
+  <view class="page-footer">© 2026 默默传媒 · 默默评价助手 版权所有</view>
 </view>

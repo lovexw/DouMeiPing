@@ -39,8 +39,8 @@
       <text class="c-value">{{item.value}}</text>
       <text class="c-copy" data-index="{{index}}" hover-class="copy-hover" bindtap="onCopyContact">复制</text>
     </view>
-    <view class="contact-note">添加时请备注「抖美评合作」，商务会第一时间通过</view>
+    <view class="contact-note">添加时请备注「默默评价助手合作」，商务会第一时间通过</view>
   </view>
 
-  <view class="page-footer">© 2026 默默传媒 · 抖美评系统</view>
+  <view class="page-footer">© 2026 默默传媒 · 默默评价助手</view>
 </view>

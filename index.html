@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>抖美评系统 · 默默传媒 | 本地商家好评运营工具</title>
+<title>默默评价管理助手 · 默默传媒 | 本地商家好评运营工具</title>
+<meta name="description" content="默默评价管理助手，基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，一键复制直达评价页面。7 大行业演示门店在线体验，每个演示均配有独立二维码。">
+<meta property="og:title" content="默默评价管理助手 · 默默传媒">
+<meta property="og:description" content="本地商家好评运营工具 — 分行业词库 + 智能生成 + 一键复制直达平台，7 大行业演示门店扫码即用。">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <style>
   * {
     margin: 0;
@@ -35,21 +42,33 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
   }
   .logo {
-    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
     font-weight: 600;
     color: #0052ff;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   }
   .logo span {
     color: #1d2129;
     font-weight: 500;
-    margin-left: 4px;
+    margin-left: 2px;
   }
   .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 30px;
     font-size: 14px;
     color: #4e5969;
   }
@@ -69,6 +88,7 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
+    white-space: nowrap;
     transition: background 0.2s;
   }
   .nav-demo-btn:hover {
@@ -164,7 +184,7 @@
   .section-title p {
     font-size: 15px;
     color: #6b7280;
-    max-width: 560px;
+    max-width: 620px;
     margin: 0 auto;
   }
 
@@ -209,15 +229,118 @@
     line-height: 1.7;
   }
 
-  /* 核心优势区块 新增 */
-  .advantage-section {
+  /* 演示门店 */
+  .demo-section {
     background: linear-gradient(180deg, #f0f5ff 0%, #f7f9fc 100%);
     border-radius: 20px;
     padding: 56px 40px;
-    margin: 0 24px;
     max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+  }
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .demo-store-card {
+    background: #fff;
+    border: 1px solid #e6ecf5;
+    border-radius: 16px;
+    padding: 20px 16px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s;
+  }
+  .demo-store-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 82, 255, 0.10);
+    border-color: #c9dcff;
+  }
+  .dsc-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 14px;
+  }
+  .dsc-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f0f5ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .dsc-name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .dsc-industry {
+    font-size: 11px;
+    color: #86909c;
+    margin-top: 2px;
+  }
+  .dsc-qr {
+    width: 108px;
+    height: 108px;
+    padding: 6px;
+    border: 1px solid #eef0f4;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .dsc-qr svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .dsc-qr-tip {
+    font-size: 11px;
+    color: #86909c;
+    margin-bottom: 12px;
+  }
+  .dsc-btn {
+    margin-top: auto;
+    padding: 9px 0;
+    width: 100%;
+    border-radius: 9px;
+    border: 1px solid #d0e0ff;
+    color: #0052ff;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .dsc-btn:hover {
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    border-color: transparent;
+    color: #fff;
+  }
+  .demo-note {
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 24px;
+    line-height: 1.9;
+  }
+  .demo-note strong {
+    color: #0052ff;
+    font-weight: 500;
+  }
+
+  /* 核心优势区块 */
+  .advantage-section {
+    background: #fff;
+    border-radius: 20px;
+    padding: 56px 40px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
   }
   .advantage-section .section-title {
     margin-bottom: 36px;
@@ -228,7 +351,7 @@
     gap: 20px;
   }
   .advantage-card {
-    background: #fff;
+    background: #fbfcff;
     padding: 28px 24px;
     border-radius: 14px;
     border: 1px solid #e0e9ff;
@@ -265,6 +388,11 @@
     font-size: 14px;
     color: #374151;
     transition: all 0.2s;
+  }
+  .industry-tag.hot {
+    border-color: #c9dcff;
+    color: #0052ff;
+    background: #f5f8ff;
   }
   .industry-tag:hover {
     border-color: #0052ff;
@@ -385,7 +513,106 @@
     font-weight: 500;
   }
 
-  /* 演示入口 */
+  /* 合作咨询 */
+  .coop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 860px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+  .coop-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  }
+  .coop-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .coop-card h3::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    border-radius: 2px;
+  }
+  .process-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+  }
+  .process-no {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .process-title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .process-desc {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 2px;
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    padding: 11px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f2f3f5;
+  }
+  .contact-row:last-of-type {
+    border-bottom: none;
+  }
+  .c-label {
+    color: #86909c;
+    width: 76px;
+    flex-shrink: 0;
+  }
+  .c-value {
+    flex: 1;
+    font-weight: 500;
+    word-break: break-all;
+  }
+  .c-copy {
+    color: #0052ff;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #e8f0ff;
+    cursor: pointer;
+    user-select: none;
+    flex-shrink: 0;
+  }
+  .c-copy:hover {
+    background: #d8e6ff;
+  }
+  .coop-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #9ca3af;
+    line-height: 1.7;
+  }
+
+  /* 演示入口横幅 */
   .demo-banner {
     background: linear-gradient(135deg, #0052ff 0%, #2b7dff 100%);
     border-radius: 16px;
@@ -428,18 +655,50 @@
     color: #9ca3af;
     font-size: 13px;
     margin-top: 40px;
+    line-height: 1.9;
+  }
+
+  /* Toast（复制提示） */
+  .toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .toast.show {
+    opacity: 1;
   }
 
   /* 响应式 */
+  @media (max-width: 900px) {
+    .demo-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 768px) {
-    .hero h1 { font-size: 32px; }
+    .hero h1 { font-size: 30px; }
+    .hero { padding: 56px 20px 40px; }
     .features { grid-template-columns: 1fr; }
     .advantage-grid { grid-template-columns: 1fr; }
     .pricing { grid-template-columns: 1fr; }
+    .coop-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
+    .section { padding: 44px 20px; }
     .section-title h2 { font-size: 26px; }
     .demo-banner { padding: 32px 24px; }
-    .advantage-section { padding: 40px 24px; }
+    .demo-section { padding: 40px 20px; }
+    .advantage-section { padding: 40px 20px; }
+    .logo { font-size: 15px; }
+  }
+  @media (max-width: 420px) {
+    .demo-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -448,14 +707,18 @@
 <!-- 导航栏 -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="logo">抖美评<span>· 默默传媒</span></div>
+    <div class="logo">
+      <img src="assets/logo.png" alt="默默评价管理助手 logo">
+      默默评价管理助手<span>· 默默传媒</span>
+    </div>
     <div class="nav-links">
       <a href="#features">核心功能</a>
+      <a href="#demos">演示门店</a>
       <a href="#advantage">核心优势</a>
-      <a href="#industries">适用行业</a>
       <a href="#pricing">定价方案</a>
+      <a href="#coop">合作咨询</a>
     </div>
-    <a href="demo/luckin.html" class="nav-demo-btn">在线演示</a>
+    <a href="#demos" class="nav-demo-btn">在线演示</a>
   </div>
 </nav>
 
@@ -464,11 +727,11 @@
   <div class="hero-badge">专为本地实体商家打造</div>
   <h1>一键生成真实好评<br>获得 <span>平台算法</span> 更多推荐</h1>
   <p class="hero-desc">
-    抖美评系统，基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，
-    一键复制直达对应评价页面，提升门店评价质量与自然推荐流量。
+    默默评价管理助手，基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，
+    一键复制直达对应评价页面，提升门店评价质量与自然推荐流量。7 大行业演示门店，每个演示均有独立二维码，扫码即用。
   </p>
   <div class="hero-btns">
-    <a href="demo/luckin.html" class="btn-primary">立即体验演示</a>
+    <a href="#demos" class="btn-primary">立即体验演示</a>
     <a href="#pricing" class="btn-secondary">查看定价方案</a>
   </div>
 </section>
@@ -483,7 +746,7 @@
     <div class="feature-card">
       <div class="feature-icon">词</div>
       <h3>分行业专属词库</h3>
-      <p>覆盖餐饮、休闲、零售等多业态，每类行业独立写实词库，评价贴合真实场景，拒绝空泛模板。</p>
+      <p>覆盖火锅、炒菜、烧烤、烤鸭、融合菜、足疗、咖啡等业态，每类行业独立写实词库，评价贴合真实场景，拒绝空泛模板。</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">智</div>
@@ -498,7 +761,7 @@
     <div class="feature-card">
       <div class="feature-icon">店</div>
       <h3>门店独立账号</h3>
-      <p>一店一码一密码，数据门店间完全隔离，支持批量管理，适合连锁品牌与多门店运营。</p>
+      <p>一店一码，数据门店间完全隔离，支持批量管理，适合连锁品牌与多门店运营。</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">双</div>
@@ -506,18 +769,35 @@
       <p>同时支持美团、抖音两大本地生活平台，一键跳转对应评价页，覆盖主流流量入口。</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">移</div>
-      <h3>移动端原生适配</h3>
-      <p>手机扫码即用，无需下载APP，界面贴合原生操作体验，店员与顾客都能快速上手。</p>
+      <div class="feature-icon">码</div>
+      <h3>门店独立二维码</h3>
+      <p>每个演示门店拥有专属二维码，扫码直达本店工具页，无需下载APP，桌贴、海报都能用。</p>
     </div>
   </div>
 </section>
 
-<!-- 核心优势 新增吸引点 -->
+<!-- 演示门店 -->
+<section class="section" id="demos">
+  <div class="demo-section">
+    <div class="section-title">
+      <h2>演示门店 · 扫码即用</h2>
+      <p>7 大行业演示环境，每个门店均配有独立二维码，扫码或点击直达对应演示，输入页面所示访问码即可体验全流程</p>
+    </div>
+    <div class="demo-grid" id="demoGrid">
+      <!-- 门店卡片与独立二维码由 assets/demo.js 渲染 -->
+    </div>
+    <div class="demo-note">
+      演示访问码：<strong>瑞幸 123 · 炒菜馆 234 · 足道 345 · 融合菜 456 · 烤鸭店 567 · 火锅 666 · 烧烤 888</strong><br>
+      二维码与页面访问地址实时对应，部署到线上后扫码即可在手机打开
+    </div>
+  </div>
+</section>
+
+<!-- 核心优势 -->
 <section class="section" id="advantage">
   <div class="advantage-section">
     <div class="section-title">
-      <h2>为什么抖美评的评价更有分量</h2>
+      <h2>为什么默默评价的评价更有分量</h2>
       <p>不止是生成文案，更是帮你拿到平台算法的流量加权</p>
     </div>
     <div class="advantage-grid">
@@ -544,15 +824,18 @@
     <p>持续扩展更多本地生活业态，按需定制专属词库</p>
   </div>
   <div class="industries">
-    <span class="industry-tag">烧烤店</span>
-    <span class="industry-tag">火锅店</span>
+    <span class="industry-tag hot">火锅店</span>
+    <span class="industry-tag hot">炒菜馆</span>
+    <span class="industry-tag hot">烧烤店</span>
+    <span class="industry-tag hot">烤鸭店</span>
+    <span class="industry-tag hot">融合菜</span>
+    <span class="industry-tag hot">足疗按摩</span>
+    <span class="industry-tag hot">咖啡饮品</span>
     <span class="industry-tag">卤味熟食</span>
-    <span class="industry-tag">咖啡饮品</span>
+    <span class="industry-tag">美容美发</span>
     <span class="industry-tag">KTV</span>
     <span class="industry-tag">电玩城</span>
-    <span class="industry-tag">足疗按摩</span>
     <span class="industry-tag">特产零食</span>
-    <span class="industry-tag">美容美发</span>
     <span class="industry-tag">酒店民宿</span>
   </div>
 </section>
@@ -573,10 +856,10 @@
         <li>无限次好评生成</li>
         <li>对应行业专属词库</li>
         <li>美团+抖音双平台跳转</li>
-        <li>门店独立账号密码</li>
+        <li>门店独立访问码与二维码</li>
         <li>词库永久免费更新</li>
       </ul>
-      <a href="demo/luckin.html" class="price-btn price-btn-outline">先体验演示</a>
+      <a href="#demos" class="price-btn price-btn-outline">先体验演示</a>
     </div>
 
     <div class="price-card recommend">
@@ -592,7 +875,7 @@
         <li>优先支持行业词库定制</li>
         <li>专属客服使用指导</li>
       </ul>
-      <a href="demo/luckin.html" class="price-btn price-btn-solid">立即体验演示</a>
+      <a href="#demos" class="price-btn price-btn-solid">立即体验演示</a>
     </div>
   </div>
   <div class="value-note">
@@ -600,21 +883,86 @@
   </div>
 </section>
 
+<!-- 合作咨询 -->
+<section class="section" id="coop">
+  <div class="section-title">
+    <h2>合作咨询</h2>
+    <p>单门店一键开通，连锁品牌支持批量开通、统一管理</p>
+  </div>
+  <div class="coop-grid">
+    <div class="coop-card">
+      <h3>合作流程</h3>
+      <div class="process-item">
+        <div class="process-no">1</div>
+        <div>
+          <div class="process-title">联系咨询</div>
+          <div class="process-desc">添加商务微信，备注「默默评价管理助手合作」</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-no">2</div>
+        <div>
+          <div class="process-title">选定套餐</div>
+          <div class="process-desc">按门店数量与使用周期，选择月度版或年度版</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-no">3</div>
+        <div>
+          <div class="process-title">开通账号</div>
+          <div class="process-desc">获取门店专属访问码、二维码与图文操作指引</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-no">4</div>
+        <div>
+          <div class="process-title">上手使用</div>
+          <div class="process-desc">扫码进入门店工具，生成、复制、跳转三步完成评价</div>
+        </div>
+      </div>
+    </div>
+    <div class="coop-card">
+      <h3>联系方式</h3>
+      <div class="contact-row">
+        <span class="c-label">商务微信</span>
+        <span class="c-value">momo-meiti666</span>
+        <span class="c-copy" data-label="商务微信" data-value="momo-meiti666" onclick="dmpCopyContact(this)">复制</span>
+      </div>
+      <div class="contact-row">
+        <span class="c-label">联系电话</span>
+        <span class="c-value">138-0000-0000</span>
+        <span class="c-copy" data-label="联系电话" data-value="138-0000-0000" onclick="dmpCopyContact(this)">复制</span>
+      </div>
+      <div class="contact-row">
+        <span class="c-label">商务邮箱</span>
+        <span class="c-value">coop@momo.media</span>
+        <span class="c-copy" data-label="商务邮箱" data-value="coop@momo.media" onclick="dmpCopyContact(this)">复制</span>
+      </div>
+      <div class="coop-note">添加时请备注「默默评价管理助手合作」，商务会第一时间通过。<br>联系方式为占位信息，正式合作前请以最新商务信息为准。</div>
+    </div>
+  </div>
+</section>
+
 <!-- 演示入口横幅 -->
 <section class="section">
   <div class="demo-banner">
     <div>
-      <h3>马上体验抖美评系统</h3>
-      <p>进入瑞幸咖啡演示版，完整体验生成、复制、跳转全流程</p>
+      <h3>马上体验默默评价管理助手</h3>
+      <p>选择任意演示门店，完整体验生成、复制、跳转全流程</p>
     </div>
-    <a href="demo/luckin.html" class="btn-white">进入演示 →</a>
+    <a href="#demos" class="btn-white">进入演示 →</a>
   </div>
 </section>
 
 <!-- 页脚 -->
 <div class="footer">
-  © 2026 默默传媒 · 抖美评系统 版权所有
+  默默评价管理助手为评价内容辅助工具，生成的评价文案为参考模板，请基于真实消费体验确认后发布。<br>
+  © 2026 默默传媒 · 默默评价管理助手 版权所有
 </div>
 
+<div class="toast" id="toast"></div>
+
+<script src="assets/qrcode.js"></script>
+<script src="assets/demo.js"></script>
 </body>
 </html>

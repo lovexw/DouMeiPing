@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>默默评价管理助手 · 默默传媒 | 本地商家好评运营工具</title>
-<meta name="description" content="默默评价管理助手，基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，一键复制直达评价页面。7 大行业演示门店在线体验，每个演示均配有独立二维码。">
+<meta name="description" content="默默评价管理助手，基于全平台 10 万条真实评价的 AI 分析，生成更有参考价值的评价文案，帮助消费者更好地表达真实体验。7 大行业演示门店在线体验，每个演示均配有独立二维码。">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="默默评价管理助手 · 默默传媒">
-<meta property="og:description" content="本地商家好评运营工具 — 分行业词库 + 智能生成 + 一键复制直达平台，7 大行业演示门店扫码即用。">
+<meta property="og:description" content="基于全平台 10 万条真实评价的 AI 分析，帮顾客更好地表达真实好体验。7 大行业演示门店扫码即用。">
 <meta property="og:image" content="assets/logo.png">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -23,6 +24,22 @@
     background: #f7f9fc;
     color: #1d2129;
     line-height: 1.6;
+  }
+
+  /* 锚点跳转：平滑滚动 + 预留导航高度 */
+  html {
+    scroll-behavior: smooth;
+  }
+  section[id] {
+    scroll-margin-top: 76px;
+  }
+
+  /* 关键数字突出 */
+  .num {
+    color: #0052ff;
+    font-weight: 700;
+    font-size: 1.18em;
+    padding: 0 1px;
   }
 
   /* 导航栏 */
@@ -94,6 +111,35 @@
   .nav-demo-btn:hover {
     background: #0044d4;
   }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    background: #fff;
+    border: 1px solid #eef0f4;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #1d2129;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* Hero 区域 */
   .hero {
@@ -200,6 +246,22 @@
     border-radius: 14px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     transition: all 0.2s;
+    position: relative;
+  }
+  .feature-card-core {
+    border: 1px solid #c9dcff;
+    background: linear-gradient(180deg, #f8faff, #ffffff);
+  }
+  .feature-flag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 3px 10px;
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 10px;
   }
   .feature-card:hover {
     transform: translateY(-2px);
@@ -334,6 +396,37 @@
     color: #0052ff;
     font-weight: 500;
   }
+  .code-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2129;
+    margin-top: 2px;
+  }
+  .code-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .code-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid #d0e0ff;
+    border-radius: 10px;
+    padding: 7px 14px;
+    font-size: 13px;
+    color: #4e5969;
+    box-shadow: 0 2px 8px rgba(0, 82, 255, 0.06);
+  }
+  .code-item b {
+    color: #0052ff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
 
   /* 核心优势区块 */
   .advantage-section {
@@ -372,6 +465,216 @@
     color: #4e5969;
     line-height: 1.7;
   }
+
+  /* 效果对比 */
+  .compare-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .compare-tab {
+    padding: 9px 20px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 22px;
+    font-size: 14px;
+    color: #4e5969;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+  }
+  .compare-tab:hover {
+    border-color: #c9dcff;
+    color: #0052ff;
+  }
+  .compare-tab.active {
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
+  }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    position: relative;
+  }
+  .compare-card {
+    border-radius: 16px;
+    padding: 26px 24px 22px;
+    display: flex;
+    flex-direction: column;
+  }
+  .compare-card.bad {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+  }
+  .compare-card.good {
+    background: linear-gradient(180deg, #f5f8ff, #ffffff);
+    border: 2px solid #0052ff;
+    box-shadow: 0 8px 24px rgba(0, 82, 255, 0.10);
+  }
+  .cc-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .cc-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .bad .cc-badge { background: #f2f3f5; }
+  .good .cc-badge {
+    background: linear-gradient(135deg, #0052ff, #2b7dff);
+    color: #fff;
+  }
+  .cc-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .cc-sub {
+    font-size: 12px;
+    color: #86909c;
+    margin-top: 2px;
+  }
+  .cc-text {
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: #1d2129;
+    background: #fff;
+    border: 1px solid #eef0f4;
+    border-radius: 12px;
+    padding: 16px 18px;
+    flex: 1;
+  }
+  .bad .cc-text {
+    color: #6b7280;
+    background: #fafbfc;
+  }
+  .cc-meta {
+    font-size: 12px;
+    color: #86909c;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cc-copy {
+    color: #0052ff;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #e8f0ff;
+    cursor: pointer;
+    user-select: none;
+  }
+  .cc-copy:hover { background: #d8e6ff; }
+  .cc-list {
+    list-style: none;
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cc-list li {
+    font-size: 13.5px;
+    line-height: 1.6;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .cc-list .ic {
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .bad .cc-list .ic { color: #f53f3f; }
+  .good .cc-list .ic { color: #0052ff; }
+  .bad .cc-list li { color: #86909c; }
+  .good .cc-list li { color: #1d2129; }
+  .vs-badge {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #1d2129;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #f7f9fc;
+    z-index: 2;
+  }
+  .compare-note {
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 22px;
+  }
+  .compare-note a {
+    color: #0052ff;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .compare-more { margin-top: 48px; }
+  .cm-head {
+    text-align: center;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .mini-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 22px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  }
+  .mini-card h4 {
+    font-size: 15.5px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .mini-line {
+    font-size: 13px;
+    line-height: 1.7;
+    border-radius: 9px;
+    padding: 9px 12px;
+    margin-bottom: 8px;
+  }
+  .mini-line:last-child { margin-bottom: 0; }
+  .mini-line b {
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  .mini-line.no {
+    background: #f7f8fa;
+    color: #86909c;
+  }
+  .mini-line.no b { color: #f53f3f; }
+  .mini-line.yes {
+    background: #f0f5ff;
+    color: #1d2129;
+  }
+  .mini-line.yes b { color: #0052ff; }
 
   /* 适用行业 */
   .industries {
@@ -683,22 +986,70 @@
     .demo-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 768px) {
-    .hero h1 { font-size: 30px; }
+    .hero h1 { font-size: 27px; }
     .hero { padding: 56px 20px 40px; }
+    .hero-desc { font-size: 16px; }
+    .hero-btns {
+      flex-direction: column;
+      align-items: stretch;
+      max-width: 360px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-btns a { text-align: center; }
     .features { grid-template-columns: 1fr; }
     .advantage-grid { grid-template-columns: 1fr; }
     .pricing { grid-template-columns: 1fr; }
     .coop-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #eef0f4;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+      padding: 6px 12px 10px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 13px 14px; border-radius: 10px; font-size: 15px; }
+    .nav-links a:hover { background: #f5f8ff; }
     .section { padding: 44px 20px; }
     .section-title h2 { font-size: 26px; }
     .demo-banner { padding: 32px 24px; }
     .demo-section { padding: 40px 20px; }
     .advantage-section { padding: 40px 20px; }
+    .compare-grid { grid-template-columns: 1fr; gap: 16px; }
+    .vs-badge { display: none; }
+    .compare-card { padding: 22px 18px 18px; }
+    .mini-grid { grid-template-columns: 1fr; }
     .logo { font-size: 15px; }
+    .logo span { display: none; }
+  }
+  @media (max-width: 360px) {
+    .nav-demo-btn { display: none; }
+    .logo { font-size: 14px; }
   }
   @media (max-width: 420px) {
-    .demo-grid { grid-template-columns: 1fr; }
+    .nav-inner { padding: 0 16px; }
+    .nav-demo-btn { padding: 8px 14px; font-size: 13px; }
+    .demo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .demo-store-card { padding: 14px 10px 12px; }
+    .dsc-head { gap: 8px; }
+    .dsc-icon { width: 34px; height: 34px; font-size: 18px; }
+    .dsc-name { font-size: 13px; }
+    .dsc-industry { font-size: 10px; }
+    .dsc-qr { width: 92px; height: 92px; }
+    .dsc-qr-tip { font-size: 10px; }
+    .dsc-btn { font-size: 12px; padding: 8px 0; }
+    .code-item { padding: 6px 10px; gap: 6px; }
+    .code-item b { font-size: 15px; }
+    .compare-tab { padding: 8px 14px; font-size: 13px; }
   }
 </style>
 </head>
@@ -713,22 +1064,29 @@
     </div>
     <div class="nav-links">
       <a href="#features">核心功能</a>
+      <a href="#compare">效果对比</a>
       <a href="#demos">演示门店</a>
       <a href="#advantage">核心优势</a>
       <a href="#pricing">定价方案</a>
       <a href="#coop">合作咨询</a>
     </div>
-    <a href="#demos" class="nav-demo-btn">在线演示</a>
+    <div class="nav-right">
+      <a href="#demos" class="nav-demo-btn">在线演示</a>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
   <div class="hero-badge">专为本地实体商家打造</div>
-  <h1>一键生成真实好评<br>获得 <span>平台算法</span> 更多推荐</h1>
+  <h1>AI 读透 <span>10 万</span> 条真实评价<br>帮顾客说出 <span>真实好体验</span></h1>
   <p class="hero-desc">
-    默默评价管理助手，基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，
-    一键复制后前往平台粘贴发布，提升门店评价质量与自然推荐流量。7 大行业演示门店，每个演示均有独立二维码，扫码即用。
+    默默评价管理助手，基于全平台 <span class="num">10 万</span> 条真实评价的 AI 分析，
+    提炼各行业顾客最关心的卖点与表达方式，生成更有参考价值的评价文案，帮助消费者把真实体验说得清楚、说得地道。
+    <span class="num">7</span> 大行业演示门店，每个演示均有独立二维码，扫码即用。
   </p>
   <div class="hero-btns">
     <a href="#demos" class="btn-primary">立即体验演示</a>
@@ -748,15 +1106,16 @@
       <h3>分行业专属词库</h3>
       <p>覆盖火锅、炒菜、烧烤、烤鸭、融合菜、足疗、咖啡等业态，每类行业独立写实词库，评价贴合真实场景，拒绝空泛模板。</p>
     </div>
-    <div class="feature-card">
+    <div class="feature-card feature-card-core">
       <div class="feature-icon">智</div>
-      <h3>智能生成不雷同</h3>
-      <p>多维组合算法，随机抽取卖点拼接生成，百条评价横向不重复，避免平台判定同质化内容。</p>
+      <h3>自研 AI 智能生成</h3>
+      <p>生成模型读透全平台 <span class="num">10 万</span> 条真实评价，懂行业、懂卖点、更懂表达；多维组合让百条评价横向不重复，支持按门店定制专属词库，真实评价风、小红书探店风等多种风格一键切换。</p>
+      <span class="feature-flag">核心能力</span>
     </div>
     <div class="feature-card">
       <div class="feature-icon">快</div>
-      <h3>一键复制即用</h3>
-      <p>生成 → 复制 → 粘贴发布，三步闭环完整链路，顾客无需打字即可完成评价。</p>
+      <h3>好体验轻松表达</h3>
+      <p>扫码即得参考文案，顾客无需打字斟酌，几十秒就能完成一条有细节的评价，真实体验一句不落。</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">店</div>
@@ -776,6 +1135,44 @@
   </div>
 </section>
 
+<!-- 效果对比 -->
+<section class="section" id="compare">
+  <div class="section-title">
+    <h2>效果对比：普通 AI vs 默默评价</h2>
+    <p>同样是 AI，没有分行业词库，写出来的永远是放之四海皆准的套话；默默评价基于行业写实词库与组合算法，每一条都有具体细节</p>
+  </div>
+  <div class="compare-tabs" id="compareTabs">
+    <!-- 行业切换标签由 assets/demo.js 渲染 -->
+  </div>
+  <div class="compare-grid" id="comparePanel">
+    <!-- 对比卡片由 assets/demo.js 渲染 -->
+  </div>
+  <div class="compare-note">
+    「默默评价」示例均来自演示词库的真实输出 —— <a href="#demos">进入演示门店</a>，可反复生成验证效果
+  </div>
+
+  <div class="compare-more">
+    <div class="cm-head">不止文案，整条链路都在拉开差距</div>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>⏱️ 生成效率对比</h4>
+        <div class="mini-line no"><b>✗</b>让顾客自己想自己写：憋半天憋出一句「味道不错」，嫌麻烦干脆不写</div>
+        <div class="mini-line yes"><b>✓</b>默默评价：扫码即得参考文案，几十秒轻松完成，顾客表达零负担</div>
+      </div>
+      <div class="mini-card">
+        <h4>🔁 同质化风险对比</h4>
+        <div class="mini-line no"><b>✗</b>普通 AI 与网上模板：生成几条就明显雷同，容易被平台判定同质化折叠</div>
+        <div class="mini-line yes"><b>✓</b>多维组合算法：上百条评价结构、卖点、措辞各不相同</div>
+      </div>
+      <div class="mini-card">
+        <h4>💰 使用成本对比</h4>
+        <div class="mini-line no"><b>✗</b>找代运营、请写手：按条计费成本高，质量还参差不齐</div>
+        <div class="mini-line yes"><b>✓</b>门店包月一口价：每天不到 1 元，无限次生成</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 演示门店 -->
 <section class="section" id="demos">
   <div class="demo-section">
@@ -787,7 +1184,16 @@
       <!-- 门店卡片与独立二维码由 assets/demo.js 渲染 -->
     </div>
     <div class="demo-note">
-      演示访问码：<strong>瑞幸 123 · 炒菜馆 234 · 足道 345 · 融合菜 456 · 烤鸭店 567 · 火锅 666 · 烧烤 888</strong><br>
+      <div class="code-label">演示访问码 · 进入演示页输入即可体验</div>
+      <div class="code-row">
+        <span class="code-item">瑞幸咖啡 <b>123</b></span>
+        <span class="code-item">炒菜馆 <b>234</b></span>
+        <span class="code-item">足道 <b>345</b></span>
+        <span class="code-item">融合菜 <b>456</b></span>
+        <span class="code-item">烤鸭店 <b>567</b></span>
+        <span class="code-item">火锅 <b>666</b></span>
+        <span class="code-item">烧烤 <b>888</b></span>
+      </div>
       二维码与页面访问地址实时对应，部署到线上后扫码即可在手机打开
     </div>
   </div>
@@ -798,7 +1204,7 @@
   <div class="advantage-section">
     <div class="section-title">
       <h2>为什么默默评价的评价更有分量</h2>
-      <p>不止是生成文案，更是帮你拿到平台算法的流量加权</p>
+      <p><span class="num">10 万</span> 条评价分析沉淀 —— 不止是文案，更是帮你拿到平台算法的流量加权</p>
     </div>
     <div class="advantage-grid">
       <div class="advantage-card">
@@ -848,9 +1254,9 @@
   </div>
   <div class="pricing">
     <div class="price-card">
-      <div class="price-name">月度版</div>
-      <div class="price-desc">适合短期试用，按月开通</div>
-      <div class="price-number">¥29.9<span></span></div>
+      <div class="price-name">体验版</div>
+      <div class="price-desc">新店首次体验专享，仅限开通一次</div>
+      <div class="price-number">¥39.9<span></span></div>
       <div class="price-unit">/ 单门店 · 月</div>
       <ul class="price-list">
         <li>无限次好评生成</li>
@@ -865,11 +1271,11 @@
     <div class="price-card recommend">
       <div class="price-tag">推荐</div>
       <div class="price-name">年度版</div>
-      <div class="price-desc">长期使用更划算，省两个月费用</div>
+      <div class="price-desc">长期使用更划算，每月比体验价省 15 元</div>
       <div class="price-number">¥299<span></span></div>
-      <div class="price-unit">/ 单门店 · 年（折合24.9元/月）</div>
+      <div class="price-unit">/ 单门店 · 年付（折合24.9元/月）</div>
       <ul class="price-list">
-        <li>包含月度版全部功能</li>
+        <li>包含体验版全部功能</li>
         <li>折合每天仅需 0.82 元</li>
         <li>全年词库免费更新迭代</li>
         <li>优先支持行业词库定制</li>
@@ -917,7 +1323,7 @@
         <div class="process-no">4</div>
         <div>
           <div class="process-title">上手使用</div>
-          <div class="process-desc">扫码进入门店工具，生成、复制、粘贴三步完成评价</div>
+          <div class="process-desc">顾客扫码进入门店工具，参考 AI 文案，轻松完成评价表达</div>
         </div>
       </div>
     </div>
@@ -948,7 +1354,7 @@
   <div class="demo-banner">
     <div>
       <h3>马上体验默默评价管理助手</h3>
-      <p>选择任意演示门店，完整体验生成、复制全流程</p>
+      <p>选择任意演示门店，完整体验 AI 生成参考文案全流程</p>
     </div>
     <a href="#demos" class="btn-white">进入演示 →</a>
   </div>
@@ -956,7 +1362,7 @@
 
 <!-- 页脚 -->
 <div class="footer">
-  默默评价管理助手为评价内容辅助工具，生成的评价文案为参考模板，请基于真实消费体验确认后发布。<br>
+  默默评价管理助手为评价表达辅助工具，AI 生成内容仅供参考，请基于真实消费体验确认后发布。<br>
   © 2026 默默传媒 · 默默评价管理助手 版权所有
 </div>
 
@@ -964,5 +1370,26 @@
 
 <script src="assets/qrcode.js"></script>
 <script src="assets/demo.js"></script>
+<script>
+  /* 移动端导航：汉堡菜单展开/收起，点击链接后自动收起 */
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+    function closeMenu() {
+      links.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    toggle.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') closeMenu();
+    });
+  })();
+</script>
 </body>
 </html>

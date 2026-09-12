@@ -581,6 +581,40 @@
     }
   };
 
+  /* ---------- 落地页效果对比（普通 AI vs 默默评价） ----------
+   * 「默默评价」一侧的文案按 combo 下标取自上方分行业词库的真实句子，
+   * 主页展示与演示门店的实际输出保持一致，顾客可进入演示反复验证。 */
+  var COMPARE = {
+    hotpot: {
+      label: '火锅店', icon: '🍲',
+      generic: '这家火锅店真的太好吃了！锅底很香，菜品都很新鲜，服务态度也特别好，环境干净又整洁，性价比超高！强烈推荐大家来打卡，下次还会再来的！',
+      genericTags: ['通篇没提一道具体菜品', '放到全国哪家火锅店都成立', '高频套话堆砌，一眼模板'],
+      oursTags: ['毛肚、七上八下，细节具体可感', '锅底、虾滑自带行业搜索词', '等位送小吃的体验真实可信'],
+      combo: [1, 1, 1, 1]
+    },
+    bbq: {
+      label: '烧烤店', icon: '🍢',
+      generic: '这家烧烤店真的绝了！烤串味道很棒，肉质新鲜，老板人也特别热情，价格还很实惠！爱吃烧烤的朋友一定要来试试，绝对不会失望的！',
+      genericTags: ['只说「好吃」，说不出哪里好吃', '没有一个具体烤品，空洞无物', '语气浮夸，反而像广告'],
+      oursTags: ['肥瘦、火候，内行才懂的细节', '羊肉串配冰啤，画面感拉满', '现烤现上的体验链路完整'],
+      combo: [0, 0, 0, 1]
+    },
+    chaocai: {
+      label: '炒菜馆', icon: '🍳',
+      generic: '这家店菜品味道不错，分量也很足，服务员态度热情，上菜速度很快，环境干净整洁，整体体验很好，推荐大家来尝尝！',
+      genericTags: ['「味道不错」是最无效的形容', '看不出这家店的招牌是什么', '千人一面，毫无记忆点'],
+      oursTags: ['直接点名招牌小炒黄牛肉', '锅气、火候，行家才有的表达', '下班吃饭的场景，真实自然'],
+      combo: [0, 0, 0, 0]
+    },
+    roastduck: {
+      label: '烤鸭店', icon: '🦆',
+      generic: '烤鸭味道很正宗，皮脆肉嫩，蘸料也很香，服务很周到，环境有档次，是聚餐的好选择，值得推荐，下次还会再来！',
+      genericTags: ['「皮脆肉嫩」四个字打发顾客', '没有任何记忆点，看完就忘', '和千篇一律的好评无差别'],
+      oursTags: ['片鸭刀工、码盘，细节层层递进', '枣红色卖相，画面感强', '现场片鸭的仪式感，可信度高'],
+      combo: [0, 0, 0, 0]
+    }
+  };
+
   /* ---------- 生成算法（与小程序版一致，避免连续雷同） ---------- */
   var lastText = {};
 
@@ -803,10 +837,84 @@
     });
   }
 
+  /* ---------- 落地页效果对比渲染 ---------- */
+  function bootCompare() {
+    var tabsEl = document.getElementById('compareTabs');
+    var panelEl = document.getElementById('comparePanel');
+    if (!tabsEl || !panelEl) return;
+    var keys = Object.keys(COMPARE);
+    var active = keys[0];
+
+    function oursText(key) {
+      var lib = LIBS[key].normal, c = COMPARE[key].combo;
+      return [lib.openers[c[0]], lib.cores[c[1]], lib.experiences[c[2]], lib.closers[c[3]]].join('。');
+    }
+
+    function tagsHtml(arr, ic) {
+      return arr.map(function (t) {
+        return '<li><span class="ic">' + ic + '</span>' + t + '</li>';
+      }).join('');
+    }
+
+    function renderPanel() {
+      var c = COMPARE[active];
+      var ours = oursText(active);
+      panelEl.innerHTML =
+        '<div class="vs-badge">VS</div>' +
+        '<div class="compare-card bad">' +
+          '<div class="cc-head">' +
+            '<div class="cc-badge">🤖</div>' +
+            '<div>' +
+              '<div class="cc-title">普通 AI 生成</div>' +
+              '<div class="cc-sub">无行业词库，只有泛泛而谈</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="cc-text">' + c.generic + '</div>' +
+          '<div class="cc-meta"><span>共 ' + c.generic.length + ' 字</span></div>' +
+          '<ul class="cc-list">' + tagsHtml(c.genericTags, '✕') + '</ul>' +
+        '</div>' +
+        '<div class="compare-card good">' +
+          '<div class="cc-head">' +
+            '<div class="cc-badge">✓</div>' +
+            '<div>' +
+              '<div class="cc-title">默默评价生成</div>' +
+              '<div class="cc-sub">' + c.label + '专属词库 · 真实输出</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="cc-text">' + ours + '</div>' +
+          '<div class="cc-meta"><span>共 ' + ours.length + ' 字</span><span class="cc-copy" id="cmpCopy">复制这条</span></div>' +
+          '<ul class="cc-list">' + tagsHtml(c.oursTags, '✓') + '</ul>' +
+        '</div>';
+      var copyBtn = document.getElementById('cmpCopy');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () { copyText(ours, '示例已复制'); });
+      }
+    }
+
+    function renderTabs() {
+      tabsEl.innerHTML = keys.map(function (k) {
+        return '<span class="compare-tab' + (k === active ? ' active' : '') + '" data-key="' + k + '">' +
+          COMPARE[k].icon + ' ' + COMPARE[k].label + '</span>';
+      }).join('');
+      Array.prototype.forEach.call(tabsEl.children, function (tab) {
+        tab.addEventListener('click', function () {
+          var key = tab.getAttribute('data-key');
+          if (key === active) return;
+          active = key;
+          renderTabs();
+          renderPanel();
+        });
+      });
+    }
+
+    renderTabs();
+    renderPanel();
+  }
+
   /* ---------- 启动 ---------- */
   document.addEventListener('DOMContentLoaded', function () {
     if (document.body.hasAttribute('data-store')) bootDemo();
-    else bootLanding();
+    else { bootLanding(); bootCompare(); }
   });
 
   /* 落地页合作咨询复制 */
@@ -815,5 +923,5 @@
   };
 
   /* 暴露给落地页与调试 */
-  window.DMP = { STORES: STORES, INDUSTRY_LABELS: INDUSTRY_LABELS, LIBS: LIBS, generateReview: generateReview };
+  window.DMP = { STORES: STORES, INDUSTRY_LABELS: INDUSTRY_LABELS, LIBS: LIBS, COMPARE: COMPARE, generateReview: generateReview };
 })();

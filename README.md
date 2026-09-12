@@ -1,7 +1,7 @@
 # 默默评价管理助手（DouMeiPing）
 
 「默默评价管理助手 · 默默传媒」— 本地商家好评运营工具的 **网页版**。
-基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，一键复制直达评价页面。
+基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，一键复制后前往平台粘贴发布。
 
 纯静态实现，无任何构建依赖，可直接部署到 GitHub Pages / Vercel / 任意静态托管。
 设计规范：主色 `#0052ff`、渐变按钮（`135deg, #0052ff → #2b7dff`）、圆角卡片、PingFang SC 字体栈、移动端优先。
@@ -53,7 +53,6 @@ DouMeiPing/
 - **访问码登录**：一店一码，登录态保存在 localStorage，刷新免登录，可「切换门店」退出。
 - **双风格生成**：真实评价风 / 小红书探店风一键切换，开头 / 核心体验 / 消费体验 / 收尾四段随机拼接，自动避开上一条结果。
 - **一键复制**：优先 Clipboard API，`file://` 等非安全环境自动降级 `execCommand`。
-- **平台跳转**：复制好评后弹窗引导；配置了评价页直链的门店可直接打开 / 复制链接。
 - **WiFi 工具**：门店 WiFi 名称密码一键复制。
 - **门店专属二维码**：与当前访问地址实时对应，桌贴、海报、台卡通用。
 
@@ -68,10 +67,11 @@ DouMeiPing/
 | 品牌 logo / favicon | `assets/` 下同名文件 |
 | 品牌主色 / 设计规范 | 各文件中的 `#0052ff` 与渐变 `#2b7dff` |
 
-## 部署（GitHub Pages）
+## 部署（GitHub Pages + 自定义域名）
 
-仓库设置 → Pages → Source 选择 `main` 分支 `/ (root)` 即可，或直接使用本仓库已开启的
-`https://lovexw.github.io/DouMeiPing/`。所有页面为相对路径引用，部署在任意子路径都能正常工作。
+- **正式访问地址**：[https://mm.xiaowuleyi.com](https://mm.xiaowuleyi.com)（经 Cloudflare 接入，`/demo/xxx.html` 会 307 到无后缀的 `/demo/xxx`，内容一致）
+- GitHub Pages 原生地址：[https://lovexw.github.io/DouMeiPing/](https://lovexw.github.io/DouMeiPing/)（仓库设置 → Pages → `main` 分支 `/ (root)`）
+- 所有页面为相对路径引用，部署在任意子路径都能正常工作；演示页二维码在浏览器端按当前访问地址实时生成，换域名无需改动任何代码。
 
 ## 合规说明
 

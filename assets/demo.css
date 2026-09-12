@@ -281,48 +281,6 @@ body {
   color: #0052ff;
 }
 
-/* 平台跳转 */
-.jump-section {
-  padding: 0 16px 16px;
-}
-.section-title-sm {
-  font-size: 12px;
-  color: #86909c;
-  margin-bottom: 10px;
-  padding-left: 2px;
-}
-.jump-buttons {
-  display: flex;
-  gap: 12px;
-}
-.jump-btn {
-  flex: 1;
-  padding: 14px 0;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.jump-btn:active {
-  transform: scale(0.98);
-}
-.btn-meituan {
-  background: #ffd101;
-  color: #333;
-}
-.btn-douyin {
-  background: #000;
-  color: #fff;
-}
-.jump-tip {
-  margin-top: 10px;
-  font-size: 11px;
-  color: #b0b6bf;
-  text-align: center;
-}
-
 /* WiFi 工具 */
 .wifi-row {
   display: flex;
@@ -449,59 +407,6 @@ body {
 }
 .toast.show {
   opacity: 1;
-}
-
-/* ---------- 弹窗 ---------- */
-.modal-mask {
-  position: fixed;
-  inset: 0;
-  background: rgba(29, 33, 41, 0.45);
-  z-index: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-}
-.modal {
-  width: 100%;
-  max-width: 320px;
-  background: #fff;
-  border-radius: 16px;
-  padding: 24px 20px 16px;
-  text-align: center;
-}
-.modal-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-.modal-body {
-  font-size: 14px;
-  color: #4e5969;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  text-align: left;
-}
-.modal-btns {
-  display: flex;
-  gap: 10px;
-}
-.modal-btn {
-  flex: 1;
-  padding: 11px 0;
-  border-radius: 10px;
-  border: none;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.modal-btn.ok {
-  background: linear-gradient(135deg, #0052ff, #2b7dff);
-  color: #fff;
-}
-.modal-btn.cancel {
-  background: #f2f3f5;
-  color: #4e5969;
 }
 
 /* ---------- 桌面端微调 ---------- */

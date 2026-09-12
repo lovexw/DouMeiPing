@@ -25,7 +25,7 @@
     <button class="login-btn" id="btnLogin">进入系统</button>
     <div class="login-tip">
       演示访问码：<span class="highlight" id="loginTipCode"></span><br>
-      输入即可体验生成、复制、跳转全流程
+      输入即可体验生成、复制全流程
     </div>
     <div class="login-back"><a href="../index.html">← 返回首页查看全部演示门店</a></div>
   </div>
@@ -57,15 +57,6 @@
     <button class="btn btn-secondary" id="btnCopy">一键复制</button>
   </div>
 
-  <section class="jump-section">
-    <div class="section-title-sm">前往平台评价</div>
-    <div class="jump-buttons">
-      <button class="jump-btn btn-meituan" data-platform="meituan">去美团评价</button>
-      <button class="jump-btn btn-douyin" data-platform="douyin">去抖音评价</button>
-    </div>
-    <div class="jump-tip">跳转前会自动复制当前好评，打开APP粘贴发布即可</div>
-  </section>
-
   <section class="card wifi-card">
     <div class="card-label muted">门店温馨工具</div>
     <div class="wifi-row">
@@ -96,18 +87,6 @@
     <a href="../index.html">← 返回首页</a> · <a id="btnLogout">切换门店</a>
     <div class="foot-note">演示内容仅供体验 · 评价文案为参考模板，请基于真实消费体验确认后发布<br>© 2026 默默传媒 · 默默评价管理助手</div>
   </footer>
-</div>
-
-<!-- 弹窗 -->
-<div class="modal-mask" id="modalMask" hidden>
-  <div class="modal">
-    <div class="modal-title" id="modalTitle"></div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-btns">
-      <button class="modal-btn cancel" id="modalCancel" hidden>取消</button>
-      <button class="modal-btn ok" id="modalOk">知道了</button>
-    </div>
-  </div>
 </div>
 
 <div class="toast" id="toast"></div>

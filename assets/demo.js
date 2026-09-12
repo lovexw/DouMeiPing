@@ -4,7 +4,7 @@
  * 依赖：assets/qrcode.js（Kazuhiko Arase, MIT）
  *
  * 每个演示页在 <body data-store="storeId"> 上声明门店，
- * 引入本文件后自动完成登录验证、生成、复制、跳转与二维码渲染。
+ * 引入本文件后自动完成登录验证、生成、复制与二维码渲染。
  * 新增演示门店：在 STORES 加一条配置 + 在 LIBS 补词库 + 复制一个薄壳 HTML。
  * ============================================================ */
 
@@ -20,7 +20,6 @@
       desc: '瑞幸咖啡 · 门店运营工具',
       industry: 'coffee',
       wifi: { ssid: '瑞幸咖啡', password: '12345678' },
-      links: { meituan: 'http://dpurl.cn/o6FwsGmz', douyin: 'https://v.douyin.com/TSRAHv2UZWE' }
     },
     hotpot: {
       id: 'hotpot', code: '666', icon: '🍲',
@@ -29,7 +28,6 @@
       desc: '蜀香火锅 · 门店运营工具',
       industry: 'hotpot',
       wifi: { ssid: '蜀香火锅', password: 'hotpot666' },
-      links: {}
     },
     chaocai: {
       id: 'chaocai', code: '234', icon: '🍳',
@@ -38,7 +36,6 @@
       desc: '老灶台炒菜馆 · 门店运营工具',
       industry: 'chaocai',
       wifi: { ssid: '老灶台炒菜馆', password: 'zaoTai234' },
-      links: {}
     },
     bbq: {
       id: 'bbq', code: '888', icon: '🍢',
@@ -47,7 +44,6 @@
       desc: '老地方烧烤 · 门店运营工具',
       industry: 'bbq',
       wifi: { ssid: '老地方烧烤', password: 'bbq888888' },
-      links: {}
     },
     zuliao: {
       id: 'zuliao', code: '345', icon: '💆',
@@ -56,7 +52,6 @@
       desc: '云舒足道 · 门店运营工具',
       industry: 'massage',
       wifi: { ssid: '云舒足道', password: 'yunShu345' },
-      links: {}
     },
     ronghe: {
       id: 'ronghe', code: '456', icon: '🍽️',
@@ -65,7 +60,6 @@
       desc: '拾光融合餐厅 · 门店运营工具',
       industry: 'fusion',
       wifi: { ssid: '拾光融合餐厅', password: 'shiGuang456' },
-      links: {}
     },
     kaoya: {
       id: 'kaoya', code: '567', icon: '🦆',
@@ -74,7 +68,6 @@
       desc: '京香阁烤鸭店 · 门店运营工具',
       industry: 'roastduck',
       wifi: { ssid: '京香阁烤鸭店', password: 'jingXiang567' },
-      links: {}
     }
   };
 
@@ -654,27 +647,6 @@
     return location.href.split('#')[0];
   }
 
-  /* ---------- 弹窗（跳转引导） ---------- */
-  function openModal(opts) {
-    var mask = document.getElementById('modalMask');
-    if (!mask) return;
-    document.getElementById('modalTitle').textContent = opts.title || '';
-    document.getElementById('modalBody').textContent = opts.body || '';
-    var cancelBtn = document.getElementById('modalCancel');
-    if (opts.showCancel) {
-      cancelBtn.hidden = false;
-      cancelBtn.textContent = opts.cancelText || '取消';
-    } else {
-      cancelBtn.hidden = true;
-    }
-    document.getElementById('modalOk').textContent = opts.okText || '知道了';
-    mask.hidden = false;
-    modalOkHandler = opts.onOk || null;
-    modalCancelHandler = opts.onCancel || null;
-  }
-  var modalOkHandler = null;
-  var modalCancelHandler = null;
-
   /* ---------- 演示页初始化 ---------- */
   function bootDemo() {
     var store = STORES[document.body.getAttribute('data-store')];
@@ -775,33 +747,6 @@
       copyText(currentReview, '复制成功');
     });
 
-    /* 平台跳转：先复制好评，再引导 / 直开评价页 */
-    document.querySelectorAll('.jump-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        if (!hasReview) doGenerate();
-        var platform = btn.getAttribute('data-platform');
-        var label = platform === 'meituan' ? '美团' : '抖音';
-        var link = store.links && store.links[platform];
-        copyText(currentReview, '好评已复制', '复制失败，请手动复制');
-        if (link) {
-          openModal({
-            title: '好评已复制',
-            body: '即将打开' + label + '评价页，粘贴发布即可。也可以先复制评价页链接备用。',
-            showCancel: true,
-            cancelText: '复制链接',
-            okText: '打开' + label,
-            onOk: function () { window.open(link, '_blank'); },
-            onCancel: function () { copyText(link, '链接已复制'); }
-          });
-        } else {
-          openModal({
-            title: '好评已复制',
-            body: '打开' + label + 'APP，搜索「' + store.name.replace(' · 演示门店', '') + '」，进入门店评价页粘贴发布即可。'
-          });
-        }
-      });
-    });
-
     /* WiFi 复制 */
     document.querySelectorAll('.wifi-copy').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -829,20 +774,6 @@
         mainPage.hidden = true;
         loginPage.hidden = false;
         input.value = '';
-      });
-    }
-
-    /* 弹窗按钮 */
-    var mask = document.getElementById('modalMask');
-    if (mask) {
-      document.getElementById('modalOk').addEventListener('click', function () {
-        mask.hidden = true;
-        if (modalOkHandler) { var fn = modalOkHandler; modalOkHandler = null; fn(); }
-      });
-      document.getElementById('modalCancel').addEventListener('click', function () {
-        mask.hidden = true;
-        if (modalCancelHandler) { var fn = modalCancelHandler; modalCancelHandler = null; fn(); }
-        modalOkHandler = null;
       });
     }
   }

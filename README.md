@@ -8,15 +8,15 @@
 
 ## 在线演示
 
-| 演示页 | 门店 | 行业词库 | 访问码 |
-| --- | --- | --- | --- |
-| [demo/luckin.html](demo/luckin.html) | 瑞幸咖啡 · 演示门店 | 咖啡饮品 | 123 |
-| [demo/chaocai.html](demo/chaocai.html) | 老灶台炒菜馆 · 演示门店 | 炒菜馆 | 234 |
-| [demo/zuliao.html](demo/zuliao.html) | 云舒足道 · 演示门店 | 足疗按摩 | 345 |
-| [demo/ronghe.html](demo/ronghe.html) | 拾光融合餐厅 · 演示门店 | 融合菜 | 456 |
-| [demo/kaoya.html](demo/kaoya.html) | 京香阁烤鸭店 · 演示门店 | 烤鸭店 | 567 |
-| [demo/hotpot.html](demo/hotpot.html) | 蜀香火锅 · 演示门店 | 火锅店 | 666 |
-| [demo/bbq.html](demo/bbq.html) | 老地方烧烤 · 演示门店 | 烧烤店 | 888 |
+| 演示页 | 门店 | 行业词库 |
+| --- | --- | --- |
+| [demo/luckin.html](demo/luckin.html) | 瑞幸咖啡 · 演示门店 | 咖啡饮品 |
+| [demo/chaocai.html](demo/chaocai.html) | 老灶台炒菜馆 · 演示门店 | 炒菜馆 |
+| [demo/zuliao.html](demo/zuliao.html) | 云舒足道 · 演示门店 | 足疗按摩 |
+| [demo/ronghe.html](demo/ronghe.html) | 拾光融合餐厅 · 演示门店 | 融合菜 |
+| [demo/kaoya.html](demo/kaoya.html) | 京香阁烤鸭店 · 演示门店 | 烤鸭店 |
+| [demo/hotpot.html](demo/hotpot.html) | 蜀香火锅 · 演示门店 | 火锅店 |
+| [demo/bbq.html](demo/bbq.html) | 老地方烧烤 · 演示门店 | 烧烤店 |
 
 每个演示门店拥有 **独立二维码**：落地页「演示门店」区块直接展示各演示页的二维码，
 每个演示页内也有「门店专属二维码」卡片，二维码内容为页面当前访问地址（客户端实时生成），
@@ -50,7 +50,7 @@ DouMeiPing/
 
 ## 演示页功能
 
-- **访问码登录**：一店一码，登录态保存在 localStorage，刷新免登录，可「切换门店」退出。
+- **免密直达**：访问码验证暂时下线（2026-09），打开演示页即可体验全流程；正式上线恢复一店一码时再启用（`STORES` 中访问码保留，见 `assets/demo.js` 注释与 git 历史）。
 - **双风格生成**：真实评价风 / 小红书探店风一键切换，开头 / 核心体验 / 消费体验 / 收尾四段随机拼接，自动避开上一条结果。
 - **一键复制**：优先 Clipboard API，`file://` 等非安全环境自动降级 `execCommand`。
 - **WiFi 工具**：门店 WiFi 名称密码一键复制。

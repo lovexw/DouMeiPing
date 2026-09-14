@@ -4,7 +4,7 @@
  * 依赖：assets/qrcode.js（Kazuhiko Arase, MIT）
  *
  * 每个演示页在 <body data-store="storeId"> 上声明门店，
- * 引入本文件后自动完成登录验证、生成、复制与二维码渲染。
+ * 引入本文件后自动完成门店信息填充、生成、复制与二维码渲染。
  * 新增演示门店：在 STORES 加一条配置 + 在 LIBS 补词库 + 复制一个薄壳 HTML。
  * ============================================================ */
 
@@ -689,10 +689,6 @@
     /* 填充门店信息 */
     document.title = store.brand + ' · 门店工具演示 | 默默评价管理助手';
     var els = {
-      loginIcon: document.getElementById('loginIcon'),
-      loginBrand: document.getElementById('loginBrand'),
-      loginDesc: document.getElementById('loginDesc'),
-      loginTipCode: document.getElementById('loginTipCode'),
       brandIcon: document.getElementById('brandIcon'),
       brandName: document.getElementById('brandName'),
       brandDesc: document.getElementById('brandDesc'),
@@ -700,10 +696,6 @@
       wifiSsid: document.getElementById('wifiSsid'),
       wifiPassword: document.getElementById('wifiPassword')
     };
-    if (els.loginIcon) els.loginIcon.textContent = store.icon;
-    if (els.loginBrand) els.loginBrand.textContent = store.brand;
-    if (els.loginDesc) els.loginDesc.textContent = store.name;
-    if (els.loginTipCode) els.loginTipCode.textContent = store.code;
     if (els.brandIcon) els.brandIcon.textContent = store.icon;
     if (els.brandName) els.brandName.textContent = store.brand;
     if (els.brandDesc) els.brandDesc.textContent = store.desc;
@@ -713,37 +705,11 @@
 
     var industryLabel = INDUSTRY_LABELS[store.industry] || INDUSTRY_LABELS.generic;
 
-    /* 登录 */
-    var loginPage = document.getElementById('loginPage');
-    var mainPage = document.getElementById('mainPage');
-    var input = document.getElementById('codeInput');
-    var SESSION_KEY = 'dmp_demo_session_' + store.id;
-
-    function enterTool() {
-      loginPage.hidden = true;
-      mainPage.hidden = false;
-      try { localStorage.setItem(SESSION_KEY, store.id); } catch (e) { /* 隐私模式下忽略 */ }
-      renderQR(document.getElementById('qrBox'), pageUrl(), 4);
-      var urlEl = document.getElementById('qrUrl');
-      if (urlEl) urlEl.textContent = pageUrl();
-    }
-
-    function tryLogin() {
-      var v = (input.value || '').trim();
-      if (!v) { showToast('请输入访问码'); return; }
-      if (v !== store.code) {
-        showToast('访问码错误，请重试');
-        input.value = '';
-        input.focus();
-        return;
-      }
-      showToast('登录成功');
-      enterTool();
-    }
-
-    document.getElementById('btnLogin').addEventListener('click', tryLogin);
-    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') tryLogin(); });
-    try { if (localStorage.getItem(SESSION_KEY) === store.id) enterTool(); } catch (e) { /* 忽略 */ }
+    /* 访问码验证暂时下线（2026-09）：演示页打开即用，正式上线恢复一店一码时，
+     * 还原登录页 HTML 与 tryLogin 校验逻辑（见 git 历史） */
+    renderQR(document.getElementById('qrBox'), pageUrl(), 4);
+    var urlEl = document.getElementById('qrUrl');
+    if (urlEl) urlEl.textContent = pageUrl();
 
     /* 风格切换与生成 */
     var currentStyle = 'normal';
@@ -800,16 +766,6 @@
       });
     }
 
-    /* 退出登录 */
-    var logout = document.getElementById('btnLogout');
-    if (logout) {
-      logout.addEventListener('click', function () {
-        try { localStorage.removeItem(SESSION_KEY); } catch (e) { /* 忽略 */ }
-        mainPage.hidden = true;
-        loginPage.hidden = false;
-        input.value = '';
-      });
-    }
   }
 
   /* ---------- 落地页初始化：演示门店卡片二维码 ---------- */
@@ -826,7 +782,7 @@
           '<span class="dsc-icon">' + s.icon + '</span>' +
           '<div class="dsc-titles">' +
             '<div class="dsc-name">' + s.brand + '</div>' +
-            '<div class="dsc-industry">' + (INDUSTRY_LABELS[s.industry] || '') + ' · 访问码 ' + s.code + '</div>' +
+            '<div class="dsc-industry">' + (INDUSTRY_LABELS[s.industry] || '') + '</div>' +
           '</div>' +
         '</div>' +
         '<div class="dsc-qr"></div>' +

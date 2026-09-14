@@ -89,4 +89,4 @@
 - **收尾三件套**：更新本文档「当前状态」→ 提交 git → 推送 GitHub，保持仓库随时可被任何 AI 接手
 - **小程序冻结（2026-09-14 起长期有效）**：小程序初稿已定格并移出本仓库（冻结副本：`~/Documents/wx-xiaochengxu/miniprogram-frozen`，最终快照永久保留在 git 历史 commit「docs: 建立统一话术总纲…」中）。**所有者不点名小程序，就永远不要改动、重建或「顺便同步」小程序的任何内容**——定价、联系方式、词库更新都只发生在网页版与文档层。恢复小程序开发 = 一个明确的所有者决策，届时从冻结副本或 git 历史恢复
 - **话术口径**：任何对外文案（网页 / 物料 / 客服 / AI 回复）改动前，先过 docs/话术清单.md 的红线词库
-- **本机环境**：开发副本在 `~/Documents/wx-xiaochengxu/doumeiping`，仓库在本机 `~/.zcode/workspace/default/DouMeiPing`，**以仓库为准**；git 全局代理 `127.0.0.1:10808` 常不在线，推送时用 `git -c http.proxy= -c https.proxy= push origin main` 临时绕过
+- **本机环境**：本目录（`~/Documents/wx-xiaochengxu/doumeiping`）即主仓库，直连 GitHub（origin = lovexw/DouMeiPing），在此直接提交推送即可。~~历史备注：曾以 `~/.zcode/workspace/default/DouMeiPing` 为仓库主副本，该副本已过期停用，勿在其上开发~~；git 全局代理 `127.0.0.1:10808` 常不在线，推送时用 `git -c http.proxy= -c https.proxy= push origin main` 临时绕过

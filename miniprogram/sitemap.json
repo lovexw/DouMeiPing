@@ -1,6 +1,0 @@
-{
-  "desc": "默默评价助手小程序 sitemap 配置",
-  "rules": [
-    { "action": "allow", "page": "*" }
-  ]
-}

@@ -281,6 +281,21 @@ body {
   color: #0052ff;
 }
 
+/* 正式版定制说明 */
+.custom-note {
+  background: #f5f8ff;
+  border: 1px solid #e8f0ff;
+}
+.custom-note-text {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #4e5969;
+}
+.custom-note-em {
+  color: #0052ff;
+  font-weight: 500;
+}
+
 /* WiFi 工具 */
 .wifi-row {
   display: flex;

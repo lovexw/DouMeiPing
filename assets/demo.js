@@ -1,5 +1,5 @@
 /* ============================================================
- * 默默评价管理助手 · 演示页公共逻辑与分行业词库
+ * 默默好赞评价管理助手 · 演示页公共逻辑与分行业词库
  * 设计规范：主色 #0052ff、渐变按钮、圆角卡片、PingFang SC 字体栈
  * 依赖：assets/qrcode.js（Kazuhiko Arase, MIT）
  *
@@ -581,8 +581,8 @@
     }
   };
 
-  /* ---------- 落地页效果对比（普通 AI vs 默默评价） ----------
-   * 「默默评价」一侧的文案按 combo 下标取自上方分行业词库的真实句子，
+  /* ---------- 落地页效果对比（普通 AI vs 默默好赞） ----------
+   * 「默默好赞」一侧的文案按 combo 下标取自上方分行业词库的真实句子，
    * 主页展示与演示门店的实际输出保持一致，顾客可进入演示反复验证。 */
   var COMPARE = {
     hotpot: {
@@ -687,7 +687,7 @@
     if (!store) { console.error('demo.js: 未找到门店配置'); return; }
 
     /* 填充门店信息 */
-    document.title = store.brand + ' · 门店工具演示 | 默默评价管理助手';
+    document.title = store.brand + ' · 门店工具演示 | 默默好赞评价管理助手';
     var els = {
       brandIcon: document.getElementById('brandIcon'),
       brandName: document.getElementById('brandName'),
@@ -833,7 +833,7 @@
           '<div class="cc-head">' +
             '<div class="cc-badge">✓</div>' +
             '<div>' +
-              '<div class="cc-title">默默评价生成</div>' +
+              '<div class="cc-title">默默好赞生成</div>' +
               '<div class="cc-sub">' + c.label + '专属词库 · 真实输出</div>' +
             '</div>' +
           '</div>' +

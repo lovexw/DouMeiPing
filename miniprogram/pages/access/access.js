@@ -1,4 +1,5 @@
-// 门店访问码验证（一店一码）
+// 【暂时停用 2026-09】门店访问码验证（一店一码）：当前商家从首页免密直达工具页。
+// 正式上线恢复访问码时，把 entry.js enterTool 与 home.js onLoad 的入口改回跳转本页即可
 const store = require('../../utils/store');
 
 Page({

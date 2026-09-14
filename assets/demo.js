@@ -741,7 +741,7 @@
     });
     document.getElementById('btnGenerate').addEventListener('click', doGenerate);
 
-    /* 复制好评 */
+    /* 复制参考文案 */
     document.getElementById('btnCopy').addEventListener('click', function () {
       if (!hasReview) doGenerate();
       copyText(currentReview, '复制成功');

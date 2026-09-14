@@ -1,4 +1,4 @@
-// 门店工具主页：好评生成 / 复制 / 平台跳转 / WiFi 工具
+// 门店工具主页：体验表达参考 / 复制 / 平台跳转 / WiFi 工具
 const storeUtil = require('../../utils/store');
 const review = require('../../utils/review');
 
@@ -13,12 +13,10 @@ Page({
     hasReview: false
   },
   onLoad() {
-    const s = getApp().globalData.store || storeUtil.loadSession();
-    if (!s) {
-      // 未登录直接访问时回到访问码页
-      wx.redirectTo({ url: '/pages/access/access' });
-      return;
-    }
+    // 访问码验证暂时下线（2026-09）：免密直达默认演示门店；
+    // 正式上线恢复一店一码时改回「无会话则 redirectTo /pages/access/access」
+    const s = getApp().globalData.store || storeUtil.getDefaultStore();
+    if (!s) return;
     getApp().globalData.store = s;
     this.setData({
       store: s,
@@ -62,7 +60,7 @@ Page({
       success: () => {
         const link = st.links && st.links[platform];
         wx.showModal({
-          title: '好评已复制',
+          title: '参考文案已复制',
           content: '打开' + label + 'APP搜索「' + st.name + '」粘贴发布即可。',
           showCancel: !!link,
           confirmText: link ? '复制链接' : '知道了',
@@ -90,10 +88,5 @@ Page({
   },
   goGuide() {
     wx.switchTab({ url: '/pages/guide/guide' });
-  },
-  onLogout() {
-    storeUtil.clearSession();
-    getApp().globalData.store = null;
-    wx.reLaunch({ url: '/pages/access/access' });
   }
 });

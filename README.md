@@ -1,7 +1,7 @@
 # 默默好赞评价管理助手（DouMeiPing）
 
-「默默好赞评价管理助手 · 默默传媒」— 本地商家好评运营工具的 **网页版**。
-基于全平台 10 万条真实评价的 AI 分析，生成更有参考价值的评价文案，帮助消费者更好地表达真实体验。
+「默默好赞评价管理助手 · 默默传媒」— 门店评价内容与口碑运营工具的 **网页版**。
+基于全平台 10 万条真实评价的 AI 分析，帮助消费者更完整地表达真实消费体验，帮助门店沉淀真实消费反馈。
 
 纯静态实现，无任何构建依赖，可直接部署到 GitHub Pages / Vercel / 任意静态托管。
 设计规范：主色 `#0052ff`、渐变按钮（`135deg, #0052ff → #2b7dff`）、圆角卡片、PingFang SC 字体栈、移动端优先。
@@ -40,7 +40,7 @@ DouMeiPing/
 │   ├── luckin.html  hotpot.html  chaocai.html  bbq.html
 │   └── zuliao.html  ronghe.html  kaoya.html
 ├── docs/ROADMAP.md             # 发展规划与架构决策（项目外置记忆）
-└── miniprogram/                # 微信小程序实现（同名产品的小程序版，详见其 README）
+└── docs/话术清单.md            # 统一话术总纲与红线词库（全触点对外口径唯一基准）
 ```
 
 ## 本地运行
@@ -61,9 +61,9 @@ DouMeiPing/
 | 想改什么 | 位置 |
 | --- | --- |
 | 新增演示门店 / 修改访问码 / WiFi / 评价页链接 | `assets/demo.js` 的 `STORES` + 复制 `demo/` 下任一薄壳页改 `data-store` 与标题 |
-| 扩充好评词库 / 新增行业 | `assets/demo.js` 的 `LIBS` 与 `INDUSTRY_LABELS` |
-| 定价方案 | `index.html` 定价区块、`miniprogram/utils/store.js` 的 `PRICING` |
-| 商务联系方式（当前为占位信息） | `index.html` 合作咨询区块、`miniprogram/utils/store.js` 的 `CONTACTS` |
+| 扩充评价词库 / 新增行业 | `assets/demo.js` 的 `LIBS` 与 `INDUSTRY_LABELS` |
+| 定价方案 | `index.html` 定价区块（小程序已冻结，其 `PRICING` 不再同步） |
+| 商务联系方式（当前为占位信息） | `index.html` 合作咨询区块（小程序已冻结，其 `CONTACTS` 不再同步） |
 | 品牌 logo / favicon | `assets/` 下同名文件 |
 | 品牌主色 / 设计规范 | 各文件中的 `#0052ff` 与渐变 `#2b7dff` |
 
@@ -75,8 +75,10 @@ DouMeiPing/
 
 ## 合规说明
 
-本工具定位为「评价内容辅助工具」：生成的评价文案是基于行业真实卖点的参考模板，
-发布前请顾客基于真实消费体验确认。对外宣传不使用「刷好评」「保证排名」等字眼（广告法 + 平台风控）。
+本工具定位为「评价表达辅助工具」：参考文案基于行业真实卖点提炼，
+发布前请顾客基于真实消费体验确认。对外口径以 [docs/话术清单.md](docs/话术清单.md) 为唯一基准——
+不使用「刷好评」「保证评分」「流量加权」等字眼（广告法 + 平台风控），
+效果表述只用「内容信号之一 / 有助于 / 可能影响」，不承诺任何结果。
 
 ## 版权
 

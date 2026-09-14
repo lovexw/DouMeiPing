@@ -112,4 +112,3 @@
   font-size: 26rpx;
 }
 .foot-link { color: #0052ff; padding: 8rpx 24rpx; }
-.foot-divider { color: #e5e6eb; }

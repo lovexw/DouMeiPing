@@ -2,11 +2,11 @@
   <!-- Hero -->
   <view class="hero">
     <view class="hero-badge">专为本地实体商家打造</view>
-    <view class="hero-title">一键生成真实好评</view>
-    <view class="hero-title">获得<text class="hl">平台算法</text>更多推荐</view>
-    <view class="hero-desc">基于分行业写实词库与智能组合算法，生成符合美团、抖音平台偏好的优质评价，一键复制直达评价页面，提升门店评价质量与自然推荐流量。</view>
+    <view class="hero-title">帮顾客说出真实好体验</view>
+    <view class="hero-title">让<text class="hl">真实体验</text>被完整表达</view>
+    <view class="hero-desc">基于分行业写实词库与智能组合算法，为顾客提供贴合真实消费场景的评价参考，一键复制直达评价页面，帮门店沉淀有细节、有信息量的真实评价内容。</view>
     <view class="hero-btns">
-      <view class="hero-btn hero-btn-primary" hover-class="btn-hover" bindtap="enterTool">{{hasSession ? '继续使用门店工具' : '进入门店工具'}}</view>
+      <view class="hero-btn hero-btn-primary" hover-class="btn-hover" bindtap="enterTool">进入门店工具</view>
       <view class="hero-btn hero-btn-ghost" hover-class="btn-hover" bindtap="goCoop">查看合作方案</view>
     </view>
   </view>
@@ -15,7 +15,7 @@
   <view class="section">
     <view class="section-head">
       <text class="t">核心功能</text>
-      <text class="d">专注解决商家好评运营痛点，开箱即用</text>
+      <text class="d">专注解决真实体验表达难题，开箱即用</text>
     </view>
     <view class="features">
       <view class="feature-card" wx:for="{{features}}" wx:key="title">
@@ -29,8 +29,8 @@
   <!-- 核心优势 -->
   <view class="section">
     <view class="section-head">
-      <text class="t">为什么默默评价助手更有分量</text>
-      <text class="d">不止是生成文案，更是帮你拿到算法的流量加权</text>
+      <text class="t">为什么默默评价助手的表达更有分量</text>
+      <text class="d">不止是文案，更是帮门店完善线上内容资产</text>
     </view>
     <view class="adv-card" wx:for="{{advantages}}" wx:key="title">
       <view class="adv-title">{{item.title}}</view>
@@ -74,7 +74,7 @@
   <view class="section">
     <view class="demo-banner">
       <view class="banner-title">马上体验默默评价助手</view>
-      <view class="banner-desc">输入演示访问码，完整体验生成、复制、跳转全流程</view>
+      <view class="banner-desc">打开即可完整体验生成、复制、跳转全流程</view>
       <view class="banner-btn" hover-class="btn-hover" bindtap="enterTool">进入演示</view>
     </view>
   </view>

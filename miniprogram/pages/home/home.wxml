@@ -11,10 +11,10 @@
     <view class="style-tab {{style === 'xhs' ? 'active' : ''}}" data-style="xhs" bindtap="onSwitchStyle">小红书探店风</view>
   </view>
 
-  <!-- 好评生成 -->
+  <!-- 体验表达参考 -->
   <view class="review-card">
-    <view class="label-bar">好评生成</view>
-    <view class="review-text {{hasReview ? '' : 'placeholder'}}">{{hasReview ? reviewText : '点击下方「随机生成」按钮，生成本店专属好评文案'}}</view>
+    <view class="label-bar">体验表达参考</view>
+    <view class="review-text {{hasReview ? '' : 'placeholder'}}">{{hasReview ? reviewText : '点击下方「随机生成」按钮，获取贴合本店真实体验的参考表达'}}</view>
     <view class="review-meta" wx:if="{{hasReview}}">{{industryLabel}} · {{styleLabel}} · 共 {{reviewLength}} 字</view>
   </view>
 
@@ -54,7 +54,5 @@
 
   <view class="home-foot">
     <view class="foot-link" hover-class="copy-hover" bindtap="goGuide">使用指南</view>
-    <text class="foot-divider">|</text>
-    <view class="foot-link" hover-class="copy-hover" bindtap="onLogout">切换门店</view>
   </view>
 </view>

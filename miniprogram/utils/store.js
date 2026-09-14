@@ -1,5 +1,7 @@
 // 门店配置、定价、联系方式与访问会话管理
 // 新接入真实门店时，在 STORES 中按现有结构增加「访问码 -> 门店信息」条目即可
+// 访问码验证暂时下线（2026-09）：商家免密直达默认门店；正式上线恢复一店一码时，
+// 重新启用 pages/access 页，并把 entry/home 的入口改回访问码校验
 
 const STORES = {
   '123': {
@@ -10,7 +12,7 @@ const STORES = {
     desc: '瑞幸咖啡 · 门店运营工具',
     industry: 'coffee',
     wifi: { ssid: '瑞幸咖啡', password: '12345678' },
-    // 平台评价页链接，留空时首页跳转仅复制好评
+    // 平台评价页链接，留空时首页跳转仅复制参考文案
     links: {
       meituan: 'http://dpurl.cn/o6FwsGmz',
       douyin: 'https://v.douyin.com/TSRAHv2UZWE'
@@ -47,7 +49,7 @@ const PRICING = [
     unit: '单门店 · 月',
     recommend: false,
     items: [
-      '无限次好评生成',
+      '无限次体验表达辅助',
       '对应行业专属词库',
       '美团+抖音双平台跳转',
       '门店独立访问码',
@@ -78,6 +80,13 @@ const CONTACTS = [
 ];
 
 const SESSION_KEY = 'dmp_session';
+
+// 访问码下线期间默认进入的演示门店
+const DEFAULT_STORE_CODE = '123';
+
+function getDefaultStore() {
+  return STORES[DEFAULT_STORE_CODE] || null;
+}
 
 function findStoreByCode(code) {
   if (!code) return null;
@@ -114,6 +123,7 @@ module.exports = {
   STORES,
   PRICING,
   CONTACTS,
+  getDefaultStore,
   findStoreByCode,
   saveSession,
   loadSession,

@@ -17,6 +17,7 @@
 | [demo/kaoya.html](demo/kaoya.html) | 京香阁烤鸭店 · 演示门店 | 烤鸭店 |
 | [demo/hotpot.html](demo/hotpot.html) | 蜀香火锅 · 演示门店 | 火锅店 |
 | [demo/bbq.html](demo/bbq.html) | 老地方烧烤 · 演示门店 | 烧烤店 |
+| [demo/tianmao.html](demo/tianmao.html) | 天猫养车（银河南街店）· 演示门店 | 汽车养护 |
 
 每个演示门店拥有 **独立二维码**：落地页「演示门店」区块直接展示各演示页的二维码，
 每个演示页内也有「门店专属二维码」卡片，二维码内容为页面当前访问地址（客户端实时生成），
@@ -36,9 +37,9 @@ DouMeiPing/
 │   ├── qrcode.js               # 二维码生成库（qrcode-generator, MIT）
 │   ├── demo.css                # 演示页公共样式
 │   └── demo.js                 # 门店配置、分行业词库、演示页全部逻辑
-├── demo/                       # 7 个演示门店页（薄壳，信息由 demo.js 填充）
+├── demo/                       # 8 个演示门店页（薄壳，信息由 demo.js 填充）
 │   ├── luckin.html  hotpot.html  chaocai.html  bbq.html
-│   └── zuliao.html  ronghe.html  kaoya.html
+│   └── zuliao.html  ronghe.html  kaoya.html  tianmao.html
 ├── docs/ROADMAP.md             # 发展规划与架构决策（项目外置记忆）
 └── docs/话术清单.md            # 统一话术总纲与红线词库（全触点对外口径唯一基准）
 ```

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>天猫养车（银河南街店）· 门店工具演示 | 默默好赞评价管理助手</title>
+<meta name="description" content="天猫养车银河南街店演示门店，汽车养护行业专属评价词库体验，突出洗车服务与到店体验">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/demo.css">
+</head>
+<body data-store="tianmao">
+
+<!-- 主页面 -->
+<div class="main-page" id="mainPage">
+  <header class="brand-header">
+    <div class="brand-icon" id="brandIcon"></div>
+    <div>
+      <div class="brand-name" id="brandName"></div>
+      <div class="brand-desc" id="brandDesc"></div>
+    </div>
+  </header>
+
+  <div class="style-tabs" id="styleTabs">
+    <div class="style-tab active" data-style="normal">真实评价风</div>
+    <div class="style-tab" data-style="xhs">小红书探店风</div>
+    <div class="style-tab" data-style="plain">简洁实在风</div>
+  </div>
+
+  <section class="card review-card">
+    <div class="card-label">体验表达参考</div>
+    <div class="review-text placeholder" id="reviewText">点击下方「随机生成」按钮，获取贴合本店真实体验的参考表达</div>
+    <div class="review-meta" id="reviewMeta" hidden></div>
+  </section>
+
+  <div class="main-actions">
+    <button class="btn btn-primary" id="btnGenerate">随机生成</button>
+    <button class="btn btn-secondary" id="btnCopy">一键复制</button>
+  </div>
+
+  <section class="card custom-note">
+    <div class="card-label">正式版专属词库</div>
+    <p class="custom-note-text">演示页展示的是本行业通用词库的输出效果。正式开通后，参考表达将根据贵店<span class="custom-note-em">真实服务项目、套餐与过往特色亮点</span>定制 —— 招牌洗护、独家流程、独有关怀都会写进专属词库，一店一词库，绝非批量化模板。</p>
+  </section>
+
+  <section class="card wifi-card">
+    <div class="card-label muted">门店温馨工具</div>
+    <div class="wifi-row">
+      <span class="wifi-label">门店名称</span>
+      <span class="wifi-value" id="wifiName"></span>
+    </div>
+    <div class="wifi-row">
+      <span class="wifi-label">WiFi 名称</span>
+      <span class="wifi-value" id="wifiSsid"></span>
+      <span class="wifi-copy" data-field="ssid">复制</span>
+    </div>
+    <div class="wifi-row">
+      <span class="wifi-label">WiFi 密码</span>
+      <span class="wifi-value" id="wifiPassword"></span>
+      <span class="wifi-copy" data-field="password">复制</span>
+    </div>
+  </section>
+
+  <section class="card qr-card">
+    <div class="card-label">门店专属二维码</div>
+    <div class="qr-wrap"><div id="qrBox"></div></div>
+    <div class="qr-tip">顾客扫码直达本店工具页，二维码与当前访问地址实时对应</div>
+    <div class="qr-url" id="qrUrl"></div>
+    <span class="qr-refresh" id="qrRefresh">刷新二维码</span>
+  </section>
+
+  <footer class="demo-foot">
+    <a href="../index.html">← 返回首页</a>
+    <div class="foot-note">演示内容仅供体验 · 评价文案为参考模板，请基于真实消费体验确认后发布<br>© 2026 默默传媒 · 默默好赞评价管理助手</div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../assets/qrcode.js"></script>
+<script src="../assets/demo.js"></script>
+</body>
+</html>
